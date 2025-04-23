@@ -2,3 +2,19 @@ baseURL: https://theddy.dev/
 languageCode: en-us
 title: Theddy Dev Space
 theme: ["PaperMod"]
+ignoreLogs: ['warning-partial-superfluous-prefix']
+
+menu:
+  main:
+    - identifier: categories
+      name: categories
+      url: /categories/
+      weight: 10
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 20
+    - identifier: posts
+      name: posts
+      url: /posts/
+      weight: 30

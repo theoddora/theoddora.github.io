@@ -1,2 +1,2 @@
 # theoddora.github.io
-Personal blog
+Personal blog powered by Hugo.
