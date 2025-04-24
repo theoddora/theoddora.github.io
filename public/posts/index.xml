@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Theddy Dev Space</title>
-    <link>http://localhost:63521/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Theddy Dev Space</description>
     <generator>Hugo -- 0.146.7</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 23 Apr 2025 16:28:36 +0300</lastBuildDate>
-    <atom:link href="http://localhost:63521/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Terminal Setup with Ghostty</title>
-      <link>http://localhost:63521/posts/terminal-setup/</link>
+      <link>http://localhost:1313/posts/terminal-setup/</link>
       <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
-      <guid>http://localhost:63521/posts/terminal-setup/</guid>
+      <guid>http://localhost:1313/posts/terminal-setup/</guid>
       <description>&lt;h1 id=&#34;terminals--ghostty-setup&#34;&gt;Terminals (+ Ghostty Setup)&lt;/h1&gt;
 &lt;p&gt;Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Last login: Sat Apr &lt;span style=&#34;color:#ae81ff&#34;&gt;19&lt;/span&gt; 00:15:16 on ttys001
