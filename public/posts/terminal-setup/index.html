@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>Terminal Setup with Ghostty | Theddy Dev Space</title>
+<meta name="robots" content="index, follow">
+<title>Terminal Emulators (&#43; Ghostty Setup) | Theddy Dev Space</title>
 <meta name="keywords" content="">
-<meta name="description" content="Terminals (&#43; Ghostty Setup)
-Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:
+<meta name="description" content="Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:
 Last login: Sat Apr 19 00:15:16 on ttys001
 What does ttys001 even mean?
 
 🖥️ Terminal, Console, TTY — What&rsquo;s the Difference?
-That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know:">
+That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/terminal-setup/">
+<link rel="canonical" href="https://theddy.dev/posts/terminal-setup/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://theddy.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://theddy.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://theddy.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://theddy.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://theddy.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/terminal-setup/">
+<link rel="alternate" hreflang="en" href="https://theddy.dev/posts/terminal-setup/">
 <noscript>
     <style>
         #theme-toggle,
@@ -61,7 +60,76 @@ That question led me to explore how terminals actually work. I had always used t
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://theddy.dev/posts/terminal-setup/">
+  <meta property="og:site_name" content="Theddy Dev Space">
+  <meta property="og:title" content="Terminal Emulators (&#43; Ghostty Setup)">
+  <meta property="og:description" content="Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:
+Last login: Sat Apr 19 00:15:16 on ttys001 What does ttys001 even mean?
+🖥️ Terminal, Console, TTY — What’s the Difference? That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-23T16:28:36+03:00">
+    <meta property="article:modified_time" content="2025-04-23T16:28:36+03:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Terminal Emulators (&#43; Ghostty Setup)">
+<meta name="twitter:description" content="Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:
+Last login: Sat Apr 19 00:15:16 on ttys001
+What does ttys001 even mean?
+
+🖥️ Terminal, Console, TTY — What&rsquo;s the Difference?
+That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://theddy.dev/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Terminal Emulators (+ Ghostty Setup)",
+      "item": "https://theddy.dev/posts/terminal-setup/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Terminal Emulators (+ Ghostty Setup)",
+  "name": "Terminal Emulators (\u002b Ghostty Setup)",
+  "description": "Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:\nLast login: Sat Apr 19 00:15:16 on ttys001 What does ttys001 even mean?\n🖥️ Terminal, Console, TTY — What\u0026rsquo;s the Difference? That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:\nLast login: Sat Apr 19 00:15:16 on ttys001 What does ttys001 even mean?\n🖥️ Terminal, Console, TTY — What’s the Difference? That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:\nShell: A shell is a program that acts as a command-line interface etween you and the operating system. Shells are applications that use the kernel API in just the same way as it is used by other application programs. A shell manages the user–system interaction by prompting users for input, interpreting their input, and then handling output from the underlying operating system. Terminal: Originally, a physical device that was connected to a computer to give access to a shell. In those days, you would have a large mainframe computer with many “dumb terminals” connected to it - they had no computing abilities themselves, they just sent keystrokes to the mainframe and displayed the text that was returned. These days, “terminal” usually refers to a terminal emulator program, which provides the window that displays the shell and allows you to interact with it. Console: The physical device or main terminal (originally tied to mainframes). A console is a special kind of terminal that is directly connected to the mainframe and used for maintenance tasks. TTY: A legacy term and acronym for the Teletypewriter device that still shows up in Unix systems to refer to terminal devices. In the Linux world, tty refers to an interface that enables access to the terminal. Command Line: A terminal is not a command prompt, though the two are somewhat similar. In Mac OS, the command prompt is even called Terminal. //===========================\\\\ || Terminal || || |-----------| || || Keyboard---\u003e| Input |-++-\u003e|---| |-------| || |-----------| || |tty|\u003c=\u003e| shell | || |---------|\u003c------++--|---| |-------| || Print\u003c--| Output | || || |---------| || || || \\\\===========================// Source: Reddit\nEnter: Ghostty After browsing terminal emulators available in 2025, I decided to switch to Ghostty. I checked out other great ones like Kitty, wezterm, and alacritty. I also looked into Warp, but requiring a login to collect telemetry made it a no-go for me.\nI chose Ghostty because:\nIt’s fast — significantly faster than the stock Terminal app (some benchmarks say 10x faster). It’s standards-compliant. It has a bunch of quality-of-life features, like themes, tab/split management, and Kitty graphics protocol support. I’m still new to terminal emulators, so honestly, any of the modern ones would’ve blown my mind. But the Ghostty experience, especially how easy it is to apply pretty themes, see the terminal inspector - won me. Other features I am now using are windows, tabs, and splits, whereas I used to go have different tabs only. Also the Kitty graphics protocol.\nMy Ghostty Config shell-integration-features = no-cursor, sudo cursor-style = block cursor-color = #f5e0dc cursor-text = #cdd6f4 cursor-opacity = 0.75 adjust-cell-height = 15% quick-terminal-position = left clipboard-read = allow clipboard-write = allow copy-on-select = clipboard theme = catppuccin-mocha bold-is-bright = true background = #1e1e2e foreground = #cdd6f4 selection-background = #585b70 selection-foreground = #cdd6f4 font-size = 14.5 font-family = SFMono Nerd Font window-save-state = always window-padding-balance = true # Keybindings keybind = cmd+s\u003er=reload_config keybind = cmd+s\u003ex=close_surface # Splits keybind = cmd+s\u003e\\=new_split:right keybind = cmd+s\u003e-=new_split:down # Tab switch keybind = cmd+s\u003e1=goto_tab:1 keybind = cmd+s\u003e2=goto_tab:2 keybind = cmd+s\u003e3=goto_tab:3 keybind = cmd+s\u003e4=goto_tab:4 keybind = cmd+s\u003e5=goto_tab:5 keybind = cmd+s\u003e6=goto_tab:6 keybind = cmd+s\u003e7=goto_tab:7 keybind = cmd+s\u003e8=goto_tab:8 keybind = cmd+s\u003e9=goto_tab:9 # Navigate splits keybind = cmd+s\u003ej=goto_split:bottom keybind = cmd+s\u003ek=goto_split:top keybind = cmd+s\u003eh=goto_split:left keybind = cmd+s\u003el=goto_split:right keybind = cmd+s\u003ee=equalize_splits keybind = cmd+s\u003ez=toggle_split_zoom ✨ My Shell Config (with Starship) I use Starship for my prompt and my shell is zsh:\n# Wait 15 sec for starship to check files under the current working directory scan_timeout = 15 # Disable the blank line at the start of the prompt add_newline = false # Replace the \"❯\" symbol in the prompt with \"➜\" [character] success_symbol = \"[➜](bold green)\" error_symbol = \"[✖](bold red)\" [username] format = \" [╭─$user]($style)@\" style_user = \"bold red\" style_root = \"bold red\" show_always = true [hostname] format = \"[$hostname]($style) in \" style = \"bold dimmed red\" trim_at = \"-\" ssh_only = false disabled = false [directory] style = \"purple\" truncation_length = 0 truncate_to_repo = true truncation_symbol = \"repo: \" [git_status] style = \"white\" ahead = \"⇡${count}\" diverged = \"⇕⇡${ahead_count}⇣${behind_count}\" behind = \"⇣${count}\" deleted = \"x\" staged = \"[+](green)\" untracked = \"[?](red)\" modified = \"[*](yellow)\" [cmd_duration] min_time = 1 format = \"took [$duration]($style)\" disabled = false [golang] style = \"bg:#86BBD8\" format = 'via [ $symbol ($version) ]($style)' [docker_context] style = \"bg:#06969A\" format = '[ $symbol $context ]($style)$path' [git_commit] disabled = false commit_hash_length = 8 [kubernetes] symbol = \"⎈ \" TODOs Read history of computer terminals Useful Reads Serial Terminal Basics Baeldung ",
+  "wordCount" : "838",
+  "inLanguage": "en",
+  "datePublished": "2025-04-23T16:28:36+03:00",
+  "dateModified": "2025-04-23T16:28:36+03:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://theddy.dev/posts/terminal-setup/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Theddy Dev Space",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://theddy.dev/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -79,7 +147,7 @@ That question led me to explore how terminals actually work. I had always used t
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
+            <a href="https://theddy.dev/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -105,17 +173,17 @@ That question led me to explore how terminals actually work. I had always used t
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/categories/" title="categories">
+                <a href="https://theddy.dev/categories/" title="categories">
                     <span>categories</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="tags">
+                <a href="https://theddy.dev/tags/" title="tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/posts/" title="posts">
+                <a href="https://theddy.dev/posts/" title="posts">
                     <span>posts</span>
                 </a>
             </li>
@@ -128,25 +196,36 @@ That question led me to explore how terminals actually work. I had always used t
   <header class="post-header">
     
     <h1 class="post-title entry-hint-parent">
-      Terminal Setup with Ghostty
+      Terminal Emulators (&#43; Ghostty Setup)
     </h1>
     <div class="post-meta"><span title='2025-04-23 16:28:36 +0300 EEST'>April 23, 2025</span>
 
 </div>
   </header> 
-  <div class="post-content"><h1 id="terminals--ghostty-setup">Terminals (+ Ghostty Setup)<a hidden class="anchor" aria-hidden="true" href="#terminals--ghostty-setup">#</a></h1>
-<p>Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:</p>
+  <div class="post-content"><p>Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Last login: Sat Apr <span style="color:#ae81ff">19</span> 00:15:16 on ttys001
 </span></span></code></pre></div><p>What does <em>ttys001</em> even mean?</p>
 <hr>
 <h2 id="-terminal-console-tty--whats-the-difference">🖥️ Terminal, Console, TTY — What&rsquo;s the Difference?<a hidden class="anchor" aria-hidden="true" href="#-terminal-console-tty--whats-the-difference">#</a></h2>
-<p>That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know:</p>
+<p>That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:</p>
 <ul>
-<li><strong>Shell</strong>: A shell is a program that acts as a command-line interface  etween you and the operating system.</li>
-<li><strong>Terminal</strong>: The application that lets you interact with the shell.</li>
-<li><strong>Console</strong>: The physical device or main terminal (originally tied to mainframes).</li>
-<li><strong>TTY (Teletypewriter)</strong>: A legacy term that still shows up in Unix systems to refer to terminal devices.</li>
+<li><strong>Shell</strong>: A shell is a program that acts as a command-line interface  etween you and the operating system. Shells are applications that use the kernel API in just the same way as it is used by other application programs. A shell manages the user–system interaction by prompting users for input, interpreting their input, and then handling output from the underlying operating system.</li>
+<li><strong>Terminal</strong>: Originally, a physical device that was connected to a computer to give access to a shell. In those days, you would have a large mainframe computer with many &ldquo;dumb terminals&rdquo; connected to it - they had no computing abilities themselves, they just sent keystrokes to the mainframe and displayed the text that was returned. These days, &ldquo;terminal&rdquo; usually refers to a terminal emulator program, which provides the window that displays the shell and allows you to interact with it.</li>
+<li><strong>Console</strong>: The physical device or main terminal (originally tied to mainframes). A console is a special kind of terminal that is directly connected to the mainframe and used for maintenance tasks.</li>
+<li><strong>TTY</strong>: A legacy term and acronym for the  <code>Teletypewriter</code> device that still shows up in Unix systems to refer to terminal devices. In the Linux world, tty refers to an interface that enables access to the terminal.</li>
+<li><strong>Command Line</strong>: A terminal is not a command prompt, though the two are somewhat similar. In Mac OS, the command prompt is even called Terminal.</li>
 </ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>//<span style="color:#f92672">===========================</span><span style="color:#ae81ff">\\</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">||</span>          Terminal         <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">||</span>             |-----------| <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">||</span> Keyboard---&gt;|   Input   |-++-&gt;|---|   |-------|
+</span></span><span style="display:flex;"><span><span style="color:#f92672">||</span>             |-----------| <span style="color:#f92672">||</span>  |tty|&lt;<span style="color:#f92672">=</span>&gt;| shell |       
+</span></span><span style="display:flex;"><span><span style="color:#f92672">||</span>         |---------|&lt;------++--|---|   |-------|
+</span></span><span style="display:flex;"><span><span style="color:#f92672">||</span> Print&lt;--|  Output |       <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">||</span>         |---------|       <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">||</span>                           <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">\\</span><span style="color:#f92672">===========================</span>//
+</span></span></code></pre></div><p>Source: <a href="https://www.reddit.com/r/programming/comments/41u5hw/comment/cz5ejh6/">Reddit</a></p>
 <hr>
 <h2 id="enter-ghostty">Enter: Ghostty<a hidden class="anchor" aria-hidden="true" href="#enter-ghostty">#</a></h2>
 <p>After browsing terminal emulators available in 2025, I decided to switch to <strong>Ghostty</strong>. I checked out other great ones like <strong>Kitty</strong>, <strong>wezterm</strong>, and <strong>alacritty</strong>. I also looked into <strong>Warp</strong>, but requiring a login to collect telemetry made it a no-go for me.</p>
@@ -159,121 +238,130 @@ That question led me to explore how terminals actually work. I had always used t
 <p>I’m still new to terminal emulators, so honestly, any of the modern ones would’ve blown my mind. But the Ghostty experience, especially how easy it is to apply pretty themes, see the terminal inspector - won me. Other features I am now using are windows, tabs, and splits, whereas I used to go have different tabs only. Also the Kitty graphics protocol.</p>
 <hr>
 <h2 id="my-ghostty-config">My Ghostty Config<a hidden class="anchor" aria-hidden="true" href="#my-ghostty-config">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">shell-integration-features</span> = <span style="color:#a6e22e">no-cursor</span>, <span style="color:#a6e22e">sudo</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cursor-style</span> = <span style="color:#a6e22e">block</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cursor-color</span> = <span style="color:#75715e">#f5e0dc</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cursor-text</span> = <span style="color:#75715e">#cdd6f4</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cursor-opacity</span> = <span style="color:#ae81ff">0.75</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">adjust-cell-height</span> = <span style="color:#ae81ff">15</span><span style="color:#960050;background-color:#1e0010">%</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>shell-integration-features <span style="color:#f92672">=</span> no-cursor, sudo
+</span></span><span style="display:flex;"><span>cursor-style <span style="color:#f92672">=</span> block
+</span></span><span style="display:flex;"><span>cursor-color <span style="color:#f92672">=</span> <span style="color:#75715e">#f5e0dc</span>
+</span></span><span style="display:flex;"><span>cursor-text <span style="color:#f92672">=</span> <span style="color:#75715e">#cdd6f4</span>
+</span></span><span style="display:flex;"><span>cursor-opacity <span style="color:#f92672">=</span> 0.75
+</span></span><span style="display:flex;"><span>adjust-cell-height <span style="color:#f92672">=</span> 15%
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">quick-terminal-position</span> = <span style="color:#a6e22e">left</span>
+</span></span><span style="display:flex;"><span>quick-terminal-position <span style="color:#f92672">=</span> left
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clipboard-read</span> = <span style="color:#a6e22e">allow</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clipboard-write</span> = <span style="color:#a6e22e">allow</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">copy-on-select</span> = <span style="color:#a6e22e">clipboard</span>
+</span></span><span style="display:flex;"><span>clipboard-read <span style="color:#f92672">=</span> allow
+</span></span><span style="display:flex;"><span>clipboard-write <span style="color:#f92672">=</span> allow
+</span></span><span style="display:flex;"><span>copy-on-select <span style="color:#f92672">=</span> clipboard
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">theme</span> = <span style="color:#a6e22e">catppuccin-mocha</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bold-is-bright</span> = <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">background</span> = <span style="color:#75715e">#1e1e2e</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">foreground</span> = <span style="color:#75715e">#cdd6f4</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">selection-background</span> = <span style="color:#75715e">#585b70</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">selection-foreground</span> = <span style="color:#75715e">#cdd6f4</span>
+</span></span><span style="display:flex;"><span>theme <span style="color:#f92672">=</span> catppuccin-mocha
+</span></span><span style="display:flex;"><span>bold-is-bright <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>background <span style="color:#f92672">=</span> <span style="color:#75715e">#1e1e2e</span>
+</span></span><span style="display:flex;"><span>foreground <span style="color:#f92672">=</span> <span style="color:#75715e">#cdd6f4</span>
+</span></span><span style="display:flex;"><span>selection-background <span style="color:#f92672">=</span> <span style="color:#75715e">#585b70</span>
+</span></span><span style="display:flex;"><span>selection-foreground <span style="color:#f92672">=</span> <span style="color:#75715e">#cdd6f4</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">font-size</span> = <span style="color:#ae81ff">14.5</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">font-family</span> = <span style="color:#a6e22e">SFMono</span> <span style="color:#a6e22e">Nerd</span> <span style="color:#a6e22e">Font</span>
+</span></span><span style="display:flex;"><span>font-size <span style="color:#f92672">=</span> 14.5
+</span></span><span style="display:flex;"><span>font-family <span style="color:#f92672">=</span> SFMono Nerd Font
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">window-save-state</span> = <span style="color:#a6e22e">always</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">window-padding-balance</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>window-save-state <span style="color:#f92672">=</span> always
+</span></span><span style="display:flex;"><span>window-padding-balance <span style="color:#f92672">=</span> true
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Keybindings</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#a6e22e">r</span>=<span style="color:#a6e22e">reload_config</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#a6e22e">x</span>=<span style="color:#a6e22e">close_surface</span>
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;r<span style="color:#f92672">=</span>reload_config
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;x<span style="color:#f92672">=</span>close_surface
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Splits</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;\</span>=<span style="color:#a6e22e">new_split</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#a6e22e">right</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#a6e22e">-</span>=<span style="color:#a6e22e">new_split</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#a6e22e">down</span>
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;<span style="color:#ae81ff">\=</span>new_split:right
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;-<span style="color:#f92672">=</span>new_split:down
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Tab switch</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#ae81ff">1</span>=<span style="color:#a6e22e">goto_tab</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#ae81ff">2</span>=<span style="color:#a6e22e">goto_tab</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">2</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#ae81ff">3</span>=<span style="color:#a6e22e">goto_tab</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">3</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#ae81ff">4</span>=<span style="color:#a6e22e">goto_tab</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">4</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#ae81ff">5</span>=<span style="color:#a6e22e">goto_tab</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#ae81ff">6</span>=<span style="color:#a6e22e">goto_tab</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">6</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#ae81ff">7</span>=<span style="color:#a6e22e">goto_tab</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">7</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#ae81ff">8</span>=<span style="color:#a6e22e">goto_tab</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">8</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#ae81ff">9</span>=<span style="color:#a6e22e">goto_tab</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;1<span style="color:#f92672">=</span>goto_tab:1
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;2<span style="color:#f92672">=</span>goto_tab:2
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;3<span style="color:#f92672">=</span>goto_tab:3
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;4<span style="color:#f92672">=</span>goto_tab:4
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;5<span style="color:#f92672">=</span>goto_tab:5
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;6<span style="color:#f92672">=</span>goto_tab:6
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;7<span style="color:#f92672">=</span>goto_tab:7
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;8<span style="color:#f92672">=</span>goto_tab:8
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;9<span style="color:#f92672">=</span>goto_tab:9
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Navigate splits</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#a6e22e">j</span>=<span style="color:#a6e22e">goto_split</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#a6e22e">bottom</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#a6e22e">k</span>=<span style="color:#a6e22e">goto_split</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#a6e22e">top</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#a6e22e">h</span>=<span style="color:#a6e22e">goto_split</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#a6e22e">left</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#a6e22e">l</span>=<span style="color:#a6e22e">goto_split</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#a6e22e">right</span>
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;j<span style="color:#f92672">=</span>goto_split:bottom
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;k<span style="color:#f92672">=</span>goto_split:top
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;h<span style="color:#f92672">=</span>goto_split:left
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;l<span style="color:#f92672">=</span>goto_split:right
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#a6e22e">e</span>=<span style="color:#a6e22e">equalize_splits</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keybind</span> = <span style="color:#a6e22e">cmd</span><span style="color:#960050;background-color:#1e0010">+</span><span style="color:#a6e22e">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span><span style="color:#a6e22e">z</span>=<span style="color:#a6e22e">toggle_split_zoom</span>
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;e<span style="color:#f92672">=</span>equalize_splits
+</span></span><span style="display:flex;"><span>keybind <span style="color:#f92672">=</span> cmd+s&gt;z<span style="color:#f92672">=</span>toggle_split_zoom
 </span></span></code></pre></div><h2 id="-my-shell-config-with-starship">✨ My Shell Config (with Starship)<a hidden class="anchor" aria-hidden="true" href="#-my-shell-config-with-starship">#</a></h2>
 <p>I use <code>Starship</code> for my prompt and my shell is <code>zsh</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># Wait 15 sec for starship to check files under the current working directory</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">scan_timeout</span> = <span style="color:#ae81ff">15</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Wait 15 sec for starship to check files under the current working directory</span>
+</span></span><span style="display:flex;"><span>scan_timeout <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Disable the blank line at the start of the prompt</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">add_newline</span> = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>add_newline <span style="color:#f92672">=</span> false
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Replace the &#34;❯&#34; symbol in the prompt with &#34;➜&#34;</span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">character</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">success_symbol</span> = <span style="color:#e6db74">&#34;[➜](bold green)&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">error_symbol</span> = <span style="color:#e6db74">&#34;[✖](bold red)&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>character<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>success_symbol <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;[➜](bold green)&#34;</span>
+</span></span><span style="display:flex;"><span>error_symbol <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;[✖](bold red)&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">username</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">format</span> = <span style="color:#e6db74">&#34; [╭─$user]($style)@&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">style_user</span> = <span style="color:#e6db74">&#34;bold red&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">style_root</span> = <span style="color:#e6db74">&#34;bold red&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">show_always</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>username<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; [╭─</span>$user<span style="color:#e6db74">](</span>$style<span style="color:#e6db74">)@&#34;</span>
+</span></span><span style="display:flex;"><span>style_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold red&#34;</span>
+</span></span><span style="display:flex;"><span>style_root <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold red&#34;</span>
+</span></span><span style="display:flex;"><span>show_always <span style="color:#f92672">=</span> true
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">hostname</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">format</span> = <span style="color:#e6db74">&#34;[$hostname]($style) in &#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">style</span> = <span style="color:#e6db74">&#34;bold dimmed red&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">trim_at</span> = <span style="color:#e6db74">&#34;-&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ssh_only</span> = <span style="color:#66d9ef">false</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">disabled</span> = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>hostname<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;[</span>$hostname<span style="color:#e6db74">](</span>$style<span style="color:#e6db74">) in &#34;</span>
+</span></span><span style="display:flex;"><span>style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold dimmed red&#34;</span>
+</span></span><span style="display:flex;"><span>trim_at <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-&#34;</span>
+</span></span><span style="display:flex;"><span>ssh_only <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>disabled <span style="color:#f92672">=</span> false
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">directory</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">style</span> = <span style="color:#e6db74">&#34;purple&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">truncation_length</span> = <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">truncate_to_repo</span> = <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">truncation_symbol</span> = <span style="color:#e6db74">&#34;repo: &#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>directory<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;purple&#34;</span>
+</span></span><span style="display:flex;"><span>truncation_length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>truncate_to_repo <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>truncation_symbol <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;repo: &#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">git_status</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">style</span> = <span style="color:#e6db74">&#34;white&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ahead</span> = <span style="color:#e6db74">&#34;⇡${count}&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">diverged</span> = <span style="color:#e6db74">&#34;⇕⇡${ahead_count}⇣${behind_count}&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">behind</span> = <span style="color:#e6db74">&#34;⇣${count}&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">deleted</span> = <span style="color:#e6db74">&#34;x&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">staged</span> = <span style="color:#e6db74">&#34;[+](green)&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">untracked</span> = <span style="color:#e6db74">&#34;[?](red)&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">modified</span> = <span style="color:#e6db74">&#34;[*](yellow)&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>git_status<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;white&#34;</span>
+</span></span><span style="display:flex;"><span>ahead <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;⇡</span><span style="color:#e6db74">${</span>count<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>diverged <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;⇕⇡</span><span style="color:#e6db74">${</span>ahead_count<span style="color:#e6db74">}</span><span style="color:#e6db74">⇣</span><span style="color:#e6db74">${</span>behind_count<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>behind <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;⇣</span><span style="color:#e6db74">${</span>count<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>deleted <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;x&#34;</span>
+</span></span><span style="display:flex;"><span>staged <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;[+](green)&#34;</span>
+</span></span><span style="display:flex;"><span>untracked <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;[?](red)&#34;</span>
+</span></span><span style="display:flex;"><span>modified <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;[*](yellow)&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">cmd_duration</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">min_time</span> = <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">format</span> = <span style="color:#e6db74">&#34;took [$duration]($style)&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">disabled</span> = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>cmd_duration<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>min_time <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;took [</span>$duration<span style="color:#e6db74">](</span>$style<span style="color:#e6db74">)&#34;</span>
+</span></span><span style="display:flex;"><span>disabled <span style="color:#f92672">=</span> false
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">golang</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">style</span> = <span style="color:#e6db74">&#34;bg:#86BBD8&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">format</span> = <span style="color:#e6db74">&#39;via [ $symbol ($version) ]($style)&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>golang<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bg:#86BBD8&#34;</span>
+</span></span><span style="display:flex;"><span>format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;via [ $symbol ($version) ]($style)&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">docker_context</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">style</span> = <span style="color:#e6db74">&#34;bg:#06969A&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">format</span> = <span style="color:#e6db74">&#39;[ $symbol $context ]($style)$path&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>docker_context<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bg:#06969A&#34;</span>
+</span></span><span style="display:flex;"><span>format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;[ $symbol $context ]($style)$path&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">git_commit</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">disabled</span> = <span style="color:#66d9ef">false</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">commit_hash_length</span> = <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>git_commit<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>disabled <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>commit_hash_length <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">kubernetes</span>]
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">symbol</span> = <span style="color:#e6db74">&#34;⎈ &#34;</span>
-</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>kubernetes<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>symbol <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;⎈ &#34;</span>
+</span></span></code></pre></div><h2 id="todos">TODOs<a hidden class="anchor" aria-hidden="true" href="#todos">#</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> Read history of computer terminals</li>
+</ul>
+<h2 id="useful-reads">Useful Reads<a hidden class="anchor" aria-hidden="true" href="#useful-reads">#</a></h2>
+<ul>
+<li><a href="https://learn.sparkfun.com/tutorials/terminal-basics/all#res">Serial Terminal Basics</a></li>
+<li><a href="https://www.baeldung.com/linux/terminal-shell-tty-vs-console">Baeldung</a></li>
+</ul>
+
 
   </div>
 

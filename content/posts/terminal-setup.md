@@ -1,12 +1,10 @@
 ---
 date: '2025-04-23T16:28:36+03:00'
 draft: false
-title: 'Terminal Setup with Ghostty'
-categories: ["setup"]
+title: 'Terminal Emulators (+ Ghostty Setup)'
+categories: ["setup", "linux"]
 
 ---
-
-# Terminals (+ Ghostty Setup)
 
 Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:
 
@@ -20,12 +18,27 @@ What does *ttys001* even mean?
 
 ## 🖥️ Terminal, Console, TTY — What's the Difference?
 
-That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know:
+That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:
 
-- **Shell**: A shell is a program that acts as a command-line interface  etween you and the operating system.
-- **Terminal**: The application that lets you interact with the shell.
-- **Console**: The physical device or main terminal (originally tied to mainframes).
-- **TTY (Teletypewriter)**: A legacy term that still shows up in Unix systems to refer to terminal devices.
+- **Shell**: A shell is a program that acts as a command-line interface  etween you and the operating system. Shells are applications that use the kernel API in just the same way as it is used by other application programs. A shell manages the user–system interaction by prompting users for input, interpreting their input, and then handling output from the underlying operating system.
+- **Terminal**: Originally, a physical device that was connected to a computer to give access to a shell. In those days, you would have a large mainframe computer with many "dumb terminals" connected to it - they had no computing abilities themselves, they just sent keystrokes to the mainframe and displayed the text that was returned. These days, "terminal" usually refers to a terminal emulator program, which provides the window that displays the shell and allows you to interact with it.
+- **Console**: The physical device or main terminal (originally tied to mainframes). A console is a special kind of terminal that is directly connected to the mainframe and used for maintenance tasks.
+- **TTY**: A legacy term and acronym for the  `Teletypewriter` device that still shows up in Unix systems to refer to terminal devices. In the Linux world, tty refers to an interface that enables access to the terminal.
+- **Command Line**: A terminal is not a command prompt, though the two are somewhat similar. In Mac OS, the command prompt is even called Terminal. 
+
+```bash
+//===========================\\
+||          Terminal         ||
+||             |-----------| ||
+|| Keyboard--->|   Input   |-++->|---|   |-------|
+||             |-----------| ||  |tty|<=>| shell |       
+||         |---------|<------++--|---|   |-------|
+|| Print<--|  Output |       ||
+||         |---------|       ||
+||                           ||
+\\===========================//
+```
+Source: [Reddit](https://www.reddit.com/r/programming/comments/41u5hw/comment/cz5ejh6/)
 
 ---
 
@@ -45,7 +58,7 @@ I’m still new to terminal emulators, so honestly, any of the modern ones would
 
 ## My Ghostty Config
 
-```toml
+```bash
 shell-integration-features = no-cursor, sudo
 cursor-style = block
 cursor-color = #f5e0dc
@@ -105,7 +118,7 @@ keybind = cmd+s>z=toggle_split_zoom
 
 I use `Starship` for my prompt and my shell is `zsh`:
 
-```toml
+```bash
 # Wait 15 sec for starship to check files under the current working directory
 scan_timeout = 15
 
@@ -166,3 +179,10 @@ commit_hash_length = 8
 [kubernetes]
 symbol = "⎈ "
 ```
+
+## TODOs
+- [ ] Read history of computer terminals 
+
+## Useful Reads
+- [Serial Terminal Basics](https://learn.sparkfun.com/tutorials/terminal-basics/all#res)
+- [Baeldung](https://www.baeldung.com/linux/terminal-shell-tty-vs-console)
