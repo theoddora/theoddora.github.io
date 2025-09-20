@@ -10,15 +10,11 @@ menu:
       identifier: home
       pageRef: /
       weight: 10
-    - identifier: categories
-      name: categories
-      url: /categories/
-      weight: 20
     - identifier: tags
       name: tags
       url: /tags/
+      weight: 20
+    - identifier: about
+      name: about
+      url: /about/
       weight: 30
-    - identifier: posts
-      name: posts
-      url: /posts/
-      weight: 40
