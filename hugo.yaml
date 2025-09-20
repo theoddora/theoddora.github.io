@@ -6,15 +6,19 @@ ignoreLogs: ['warning-partial-superfluous-prefix']
 
 menu:
   main:
+    - name: home
+      identifier: home
+      pageRef: /
+      weight: 10
     - identifier: categories
       name: categories
       url: /categories/
-      weight: 10
+      weight: 20
     - identifier: tags
       name: tags
       url: /tags/
-      weight: 20
+      weight: 30
     - identifier: posts
       name: posts
       url: /posts/
-      weight: 30
+      weight: 40

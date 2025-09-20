@@ -4,23 +4,8 @@
     <title>Categories on Theddy Dev Space</title>
     <link>https://theddy.dev/categories/</link>
     <description>Recent content in Categories on Theddy Dev Space</description>
-    <generator>Hugo -- 0.146.7</generator>
+    <generator>Hugo -- 0.150.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Apr 2025 16:28:36 +0300</lastBuildDate>
     <atom:link href="https://theddy.dev/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Linux</title>
-      <link>https://theddy.dev/categories/linux/</link>
-      <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
-      <guid>https://theddy.dev/categories/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Setup</title>
-      <link>https://theddy.dev/categories/setup/</link>
-      <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
-      <guid>https://theddy.dev/categories/setup/</guid>
-      <description></description>
-    </item>
   </channel>
 </rss>

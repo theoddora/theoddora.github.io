@@ -2,7 +2,7 @@
 date: '2025-04-23T16:28:36+03:00'
 draft: false
 title: 'Terminal Emulators (+ Ghostty Setup)'
-categories: ["setup", "linux"]
+tags: ["terminal", "linux", "console", "unix", "shell"]
 
 ---
 
@@ -114,19 +114,51 @@ keybind = cmd+s>e=equalize_splits
 keybind = cmd+s>z=toggle_split_zoom
 ```
 
+## Fonts
+
+```bash
+ls ~/Library/Fonts
+
+# Output
+SFMono Bold Italic Nerd Font Complete
+SFMono Bold Nerd Font Complete
+SFMono Heavy Italic Nerd Font Complete
+SFMono Heavy Nerd Font Complete
+SFMono Light Italic Nerd Font Complete
+SFMono Light Nerd Font Complete
+SFMono Medium Italic Nerd Font Complete
+SFMono Medium Nerd Font Complete
+SFMono Regular Italic Nerd Font Complete
+SFMono Regular Nerd Font Complete
+SFMono Semibold Italic Nerd Font Complete
+SFMono Semibold Nerd Font Complete
+```
+
 ## ✨ My Shell Config (with Starship)
 
 I use `Starship` for my prompt and my shell is `zsh`:
 
-```bash
+```toml
 # Wait 15 sec for starship to check files under the current working directory
 scan_timeout = 15
 
 # Disable the blank line at the start of the prompt
 add_newline = false
 
+[line_break]
+disabled = false
+
+[time]
+disabled = false
+format = "[$time]($style) "
+time_format = "[%T]"  # This gives you HH:MM:SS (24-hour format)
+# style = "bold yellow"
+style = "#939594"
+
 # Replace the "❯" symbol in the prompt with "➜"
 [character]
+# The "success_symbol" segment is being set to "➜" with the color "bold green"
+# use_symbol_for_status = true
 success_symbol = "[➜](bold green)"
 error_symbol = "[✖](bold red)"
 
@@ -134,19 +166,19 @@ error_symbol = "[✖](bold red)"
 format = " [╭─$user]($style)@"
 style_user = "bold red"
 style_root = "bold red"
-show_always = true
+show_always = false
 
 [hostname]
 format = "[$hostname]($style) in "
 style = "bold dimmed red"
 trim_at = "-"
 ssh_only = false
-disabled = false
+disabled = true
 
 [directory]
 style = "purple"
-truncation_length = 0
-truncate_to_repo = true
+truncation_length = 8
+truncate_to_repo = false
 truncation_symbol = "repo: "
 
 [git_status]
@@ -162,13 +194,26 @@ modified = "[*](yellow)"
 [cmd_duration]
 min_time = 1
 format = "took [$duration]($style)"
-disabled = false
+disabled = true
+
+[aws]
+symbol = "\uE32D  " # requires Nerd Font, AWS icon
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = "\uF418 "  # requires Nerd Font, Git branch
 
 [golang]
-style = "bg:#86BBD8"
-format = 'via [ $symbol ($version) ]($style)'
+symbol = "\uE627 "  # requires Nerd Font, Go icon
+format = "via [$symbol ($version) ]($style)"
+
+[memory_usage]
+symbol = "\uF85A "  # requires Nerd Font, Memory
 
 [docker_context]
+symbol = "\uF308 "  # requires Nerd Font, Docker
 style = "bg:#06969A"
 format = '[ $symbol $context ]($style)$path'
 
@@ -177,12 +222,14 @@ disabled = false
 commit_hash_length = 8
 
 [kubernetes]
-symbol = "⎈ "
-```
+format = '[⛵ ($cluster) \($namespace\)](bold green) '
+disabled = false
 
-## TODOs
-- [ ] Read history of computer terminals 
+[package]
+symbol = "\uF896"   # requires Nerd Font, Package
+```
 
 ## Useful Reads
 - [Serial Terminal Basics](https://learn.sparkfun.com/tutorials/terminal-basics/all#res)
 - [Baeldung](https://www.baeldung.com/linux/terminal-shell-tty-vs-console)
+- [A Guide to the Terminal, Console, and Shell](https://thevaluable.dev/guide-terminal-shell-console/)

@@ -4,8 +4,44 @@
     <title>Tags on Theddy Dev Space</title>
     <link>https://theddy.dev/tags/</link>
     <description>Recent content in Tags on Theddy Dev Space</description>
-    <generator>Hugo -- 0.146.7</generator>
+    <generator>Hugo -- 0.150.0</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 23 Apr 2025 16:28:36 +0300</lastBuildDate>
     <atom:link href="https://theddy.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Console</title>
+      <link>https://theddy.dev/tags/console/</link>
+      <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
+      <guid>https://theddy.dev/tags/console/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://theddy.dev/tags/linux/</link>
+      <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
+      <guid>https://theddy.dev/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shell</title>
+      <link>https://theddy.dev/tags/shell/</link>
+      <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
+      <guid>https://theddy.dev/tags/shell/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Terminal</title>
+      <link>https://theddy.dev/tags/terminal/</link>
+      <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
+      <guid>https://theddy.dev/tags/terminal/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Unix</title>
+      <link>https://theddy.dev/tags/unix/</link>
+      <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
+      <guid>https://theddy.dev/tags/unix/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

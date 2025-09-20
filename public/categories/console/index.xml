@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Console on Theddy Dev Space</title>
+    <link>http://localhost:1313/categories/console/</link>
+    <description>Recent content in Console on Theddy Dev Space</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 23 Apr 2025 16:28:36 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/console/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Terminal Emulators (&#43; Ghostty Setup)</title>
+      <link>http://localhost:1313/posts/terminal-setup/</link>
+      <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
+      <guid>http://localhost:1313/posts/terminal-setup/</guid>
+      <description>&lt;p&gt;Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Last login: Sat Apr &lt;span style=&#34;color:#ae81ff&#34;&gt;19&lt;/span&gt; 00:15:16 on ttys001
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What does &lt;em&gt;ttys001&lt;/em&gt; even mean?&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-terminal-console-tty--whats-the-difference&#34;&gt;🖥️ Terminal, Console, TTY — What&amp;rsquo;s the Difference?&lt;/h2&gt;
+&lt;p&gt;That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

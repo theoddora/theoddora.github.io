@@ -2,16 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://theddy.dev/categories/</loc>
+    <loc>https://theddy.dev/tags/console/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>https://theddy.dev/categories/linux/</loc>
+    <loc>https://theddy.dev/tags/linux/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
     <loc>https://theddy.dev/posts/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>https://theddy.dev/categories/setup/</loc>
+    <loc>https://theddy.dev/tags/shell/</loc>
+    <lastmod>2025-04-23T16:28:36+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/tags/</loc>
+    <lastmod>2025-04-23T16:28:36+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/tags/terminal/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
     <loc>https://theddy.dev/posts/terminal-setup/</loc>
@@ -20,6 +26,9 @@
     <loc>https://theddy.dev/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>https://theddy.dev/tags/</loc>
+    <loc>https://theddy.dev/tags/unix/</loc>
+    <lastmod>2025-04-23T16:28:36+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/categories/</loc>
   </url>
 </urlset>
