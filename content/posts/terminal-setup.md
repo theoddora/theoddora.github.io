@@ -72,7 +72,7 @@ clipboard-read = allow
 clipboard-write = allow
 copy-on-select = clipboard
 
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 bold-is-bright = true
 background = #1e1e2e
 foreground = #cdd6f4
@@ -85,14 +85,6 @@ font-family = SFMono Nerd Font
 window-save-state = always
 window-padding-balance = true
 
-# Keybindings
-keybind = cmd+s>r=reload_config
-keybind = cmd+s>x=close_surface
-
-# Splits
-keybind = cmd+s>\=new_split:right
-keybind = cmd+s>-=new_split:down
-
 # Tab switch
 keybind = cmd+s>1=goto_tab:1
 keybind = cmd+s>2=goto_tab:2
@@ -103,15 +95,6 @@ keybind = cmd+s>6=goto_tab:6
 keybind = cmd+s>7=goto_tab:7
 keybind = cmd+s>8=goto_tab:8
 keybind = cmd+s>9=goto_tab:9
-
-# Navigate splits
-keybind = cmd+s>j=goto_split:bottom
-keybind = cmd+s>k=goto_split:top
-keybind = cmd+s>h=goto_split:left
-keybind = cmd+s>l=goto_split:right
-
-keybind = cmd+s>e=equalize_splits
-keybind = cmd+s>z=toggle_split_zoom
 ```
 
 ## Fonts
