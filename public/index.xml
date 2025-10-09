@@ -6,8 +6,25 @@
     <description>Recent content on Theddy Dev Space</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Sep 2025 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Oct 2025 18:15:00 +0300</lastBuildDate>
     <atom:link href="https://theddy.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Writing Your First Kubernetes Operator - The Definitions</title>
+      <link>https://theddy.dev/posts/operator-1/</link>
+      <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
+      <guid>https://theddy.dev/posts/operator-1/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;re like me and just starting your Kubernetes journey, you&amp;rsquo;ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;controller-runtime&lt;/code&gt; — a Go framework for building controllers and operators&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;kubebuilder&lt;/code&gt; — a CLI tool that scaffolds an operator project using &lt;code&gt;controller-runtime&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;controller-vs-operator&#34;&gt;Controller vs Operator&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Controller&lt;/strong&gt; = logic that keeps the actual state aligned with the desired state.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Operator&lt;/strong&gt; = a controller that manages an application like a human operator would, using &lt;strong&gt;Custom Resources&lt;/strong&gt;.&lt;br&gt;
+In short: &lt;strong&gt;Operator = Controller + Custom Resource (CRD) + Domain Knowledge&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>About</title>
       <link>https://theddy.dev/about/</link>

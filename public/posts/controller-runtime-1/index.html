@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Writing Your First Kubernetes Operator - The Definitions | Theddy Dev Space</title>
+<meta name="keywords" content="k8s, kubernetes, operator, controller-runtime">
+<meta name="description" content="If you&rsquo;re like me and just starting your Kubernetes journey, you&rsquo;ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:
+
+controller-runtime — a Go framework for building controllers and operators
+kubebuilder — a CLI tool that scaffolds an operator project using controller-runtime
+
+Controller vs Operator
+
+Controller = logic that keeps the actual state aligned with the desired state.
+
+Operator = a controller that manages an application like a human operator would, using Custom Resources.
+In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowledge">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/controller-runtime-1/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/controller-runtime-1/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Theddy Dev Space">
+                    <span>home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Writing Your First Kubernetes Operator - The Definitions
+    </h1>
+    <div class="post-meta"><span title='2025-10-09 16:57:00 +0300 EEST'>October 9, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>If you&rsquo;re like me and just starting your Kubernetes journey, you&rsquo;ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:</p>
+<ul>
+<li><code>controller-runtime</code> — a Go framework for building controllers and operators</li>
+<li><code>kubebuilder</code> — a CLI tool that scaffolds an operator project using <code>controller-runtime</code></li>
+</ul>
+<h4 id="controller-vs-operator">Controller vs Operator<a hidden class="anchor" aria-hidden="true" href="#controller-vs-operator">#</a></h4>
+<blockquote>
+<p><strong>Controller</strong> = logic that keeps the actual state aligned with the desired state.</p></blockquote>
+<blockquote>
+<p><strong>Operator</strong> = a controller that manages an application like a human operator would, using <strong>Custom Resources</strong>.<br>
+In short: <strong>Operator = Controller + Custom Resource (CRD) + Domain Knowledge</strong></p></blockquote>
+<p>In this guide, we will focus on writing an operator using controller runtime.</p>
+<p>But first, it is important to have a conceptual idea of what we are using to achieve our goal.</p>
+<hr>
+<h2 id="api-machinery-and-controller-runtime">API Machinery and Controller Runtime<a hidden class="anchor" aria-hidden="true" href="#api-machinery-and-controller-runtime">#</a></h2>
+<p>We will add conceptual knowledge and main definitions of our building blocks:</p>
+<ul>
+<li>API Machinery - <code>&quot;k8s.io/apimachinery&quot;</code></li>
+<li>Controller Runtime - <code>&quot;sigs.k8s.io/controller-runtime&quot;</code></li>
+</ul>
+<h3 id="architecture">Architecture<a hidden class="anchor" aria-hidden="true" href="#architecture">#</a></h3>
+<p>On the bottom layer, we have the <strong>Kubernetes API server</strong> and <strong>etcd</strong>.<br>
+Building on top of that is <strong>API Machinery</strong>, and on top of that, we have <strong>controller-runtime</strong>.</p>
+<pre tabindex="0"><code>+---------------------------------------------------------+
+| controller-runtime (framework for building controllers)  |
+|   ├── Manager                                            |
+|   ├── Controller                                         |
+|   ├── Reconciler                                         |
+|   ├── Client (wraps API Machinery client)                |
++---------------------------------------------------------+
+| Kubernetes API Machinery (low-level API tools)           |
+|   ├── runtime.Scheme, Object, Serializer                 |
+|   ├── GroupVersionKind, GroupResource                    |
+|   ├── DeepCopy, Conversion, Meta types                   |
++---------------------------------------------------------+
+| Kubernetes API Server &amp; etcd                             |
++---------------------------------------------------------+
+</code></pre><h2 id="api-machinery">API Machinery<a hidden class="anchor" aria-hidden="true" href="#api-machinery">#</a></h2>
+<p>API Machinery is the <strong>foundation</strong> that defines <em>what</em> Kubernetes objects are and <em>how</em> they are encoded and handled. It tells Kubernetes how to understand, version, and serialize objects.</p>
+<p>This is the <strong>core library</strong> of Kubernetes - the low-level building blocks that make the Kubernetes API function.</p>
+<p>It handles all the &ldquo;API plumbing&rdquo; such as:</p>
+<ul>
+<li>Serialization and deserialization (JSON &lt;-&gt; Go structs)</li>
+<li>Type registration (<code>Scheme</code>, <code>GroupVersionKind</code>)</li>
+<li>Metadata (<code>ObjectMeta</code>, <code>TypeMeta</code>)</li>
+<li>Versioning and conversion logic</li>
+<li>Deep copying and object interfaces</li>
+<li>REST resource identification (<code>GroupVersionResource</code>, etc.)</li>
+</ul>
+<p>Outlining the main types our Operator will use</p>
+<ul>
+<li><code>TypeMeta</code> - Serialization, deserialization, API routing</li>
+<li><code>ObjectMeta</code> - Uniqueness, lifecycle, metadata tracking</li>
+<li><code>GroupVersionResource</code> - Kubernetes API resources are fully identified by a <strong>group-version-resource (GVR)</strong> triple: example - group:apps, version: v1, resource: deployment</li>
+</ul>
+<p><strong>Key packages of API Machinery:</strong></p>
+<ul>
+<li><code>runtime</code> - defines <code>runtime.Object</code>, <code>Scheme</code>, and type registration.</li>
+<li><code>schema</code> - defines <code>GroupVersion</code>, <code>GroupKind</code>, <code>GroupResource</code>, etc.</li>
+<li><code>metav1</code> - defines metadata structs like <code>ObjectMeta</code>, <code>ListMeta</code>.</li>
+<li><code>util/runtime</code>, <code>util/validation</code> - utility helpers.</li>
+<li><code>fields</code>, <code>labels</code>, etc. - for selectors.</li>
+</ul>
+<h3 id="what-is-a-schema-actually">What is a <code>Schema</code> actually?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-schema-actually">#</a></h3>
+<p>A <strong>Schema</strong> (represented by <code>runtime.Scheme</code> in Go) defines <strong>how objects of different types are recognized, versioned, and converted</strong>. It acts as a <strong>registry</strong> of all known Kubernetes types in our controller.</p>
+<p>When we register a type with a Scheme, we are actually saying:</p>
+<ul>
+<li>&ldquo;This Go struct represents a Kubernetes resource.&rdquo;</li>
+<li>&ldquo;Here&rsquo;s its group, version, and kind (GVK).&rdquo;</li>
+<li>&ldquo;Here&rsquo;s how to convert it between versions if needed.&rdquo;</li>
+</ul>
+<p>The Scheme is crucial because it allows our operator to:</p>
+<ol>
+<li>Encode and decode objects to/from JSON or YAML.</li>
+<li>Identify an object&rsquo;s type when reading from the API or cache.</li>
+<li>Support version conversions when our CRD evolves.</li>
+</ol>
+<p>Without a Scheme, our controller wouldn&rsquo;t know how to handle our custom resources properly, and most controller-runtime operations like <code>Get</code>, <code>List</code>, or <code>Create</code> would fail.</p>
+<h2 id="controller-runtime">Controller runtime<a hidden class="anchor" aria-hidden="true" href="#controller-runtime">#</a></h2>
+<p>Key components and architecture of the controller-runtime:</p>
+<pre tabindex="0"><code>       ┌──────────────────────────────────────────┐
+       │                Manager                   │
+       │  - sets up cache, client, recorder       │
+       │  - starts controllers                    │
+       └──────────────┬───────────────────────────┘
+                      │
+                      ▼
+             ┌─────────────────────┐
+             │     Controller      │
+             │ - watches resources │
+             │ - enqueues requests │
+             └──────────┬──────────┘
+                        │
+                        ▼
+             ┌─────────────────────┐
+             │     Reconciler      │
+             │ - gets objects      │
+             │ - compares desired  │
+             │ - updates cluster   │
+             │ - reports status    │
+             └─────────────────────┘
+</code></pre><p>The controller runtime is a <strong>high-level framework</strong> for building <strong>controllers and operators</strong> in Go - built <em>on top of API Machinery</em>.</p>
+<p><strong>It provides:</strong></p>
+<ul>
+<li>A <strong>Manager</strong> (lifecycle &amp; dependency injection)</li>
+<li><strong>Controllers</strong> and <strong>Reconcilers</strong></li>
+<li>A unified <strong>Client</strong> (reads from cache, writes to API) - a <strong>Kubernetes API client</strong></li>
+<li>Shared <strong>Caches</strong> (informers under the hood)</li>
+<li>Support for <strong>webhooks</strong>, <strong>leader election</strong>, and <strong>metrics</strong></li>
+</ul>
+<h4 id="client">Client<a hidden class="anchor" aria-hidden="true" href="#client">#</a></h4>
+<p>Unified Client (reads from cache, writes to API)</p>
+<blockquote>
+<p>&ldquo;Unified&rdquo; = one consistent interface for both <strong>cached reads</strong> and <strong>direct writes</strong>, instead of two separate systems.</p></blockquote>
+<p>When we create a Manager, it will automatically build a <code>Client</code> and inject it into our controllers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">mgr</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">NewManager</span>(<span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">GetConfigOrDie</span>(), <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Options</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Scheme</span>: <span style="color:#a6e22e">scheme</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myReconciler</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">controllers</span>.<span style="color:#a6e22e">MyReconciler</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Client</span>: <span style="color:#a6e22e">mgr</span>.<span style="color:#a6e22e">GetClient</span>(),  <span style="color:#75715e">// &lt;-- here&#39;s the client</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, when our controller does something like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">pod</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">corev1</span>.<span style="color:#a6e22e">Pod</span>{} <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Client</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">ObjectKey</span>{<span style="color:#a6e22e">Name</span>: <span style="color:#e6db74">&#34;mypod&#34;</span>, <span style="color:#a6e22e">Namespace</span>: <span style="color:#e6db74">&#34;default&#34;</span>}, <span style="color:#a6e22e">pod</span>)
+</span></span></code></pre></div><p>it&rsquo;s using the <strong>Client</strong> to <em>get</em> the Pod object - usually from the <strong>cache</strong> (for speed).</p>
+<p>Or when it does:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Client</span>.<span style="color:#a6e22e">Update</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">pod</span>)
+</span></span></code></pre></div><p>it&rsquo;s using the <strong>Client</strong> to <em>write</em> the updated Pod back to the <strong>Kubernetes API server</strong>.</p>
+<h4 id="manager">Manager<a hidden class="anchor" aria-hidden="true" href="#manager">#</a></h4>
+<p>Kubernetes controllers need a <strong>shared environment</strong>:</p>
+<ul>
+<li>One <code>Client</code> that uses the shared informer cache</li>
+<li>One <code>Scheme</code> for object type conversions</li>
+<li>One <code>Recorder</code> for emitting events</li>
+<li>One <code>Config</code> (the REST client configuration)</li>
+<li>One <code>APIReader</code> for uncached reads</li>
+</ul>
+<p>So the <strong>Manager</strong> centralizes them, then <strong>injects</strong> them into every controller or runnable that needs them.</p>
+<p>Dependency injection means we don&rsquo;t create our dependencies ourselves, we receive them from something else that manages their lifecycle. Instead of our controller manually constructing clients, caches, recorders, etc., the Manager creates them once, shares them across all controllers, and injects them into each component.</p>
+<p>In Go, controller-runtime doesn&rsquo;t use a reflection-based DI framework like Java&rsquo;s Spring - it uses <strong>struct fields</strong> and <strong>interfaces</strong> to achieve DI <em>statically</em>.</p>
+<p>Each controller&rsquo;s Reconciler usually looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MyReconciler</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">Client</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Scheme</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">Scheme</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then in <code>main.go</code>, it wires it up like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">reconciler</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">controllers</span>.<span style="color:#a6e22e">MyReconciler</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Client</span>: <span style="color:#a6e22e">mgr</span>.<span style="color:#a6e22e">GetClient</span>(),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Scheme</span>: <span style="color:#a6e22e">mgr</span>.<span style="color:#a6e22e">GetScheme</span>(),
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reconciler</span>.<span style="color:#a6e22e">SetupWithManager</span>(<span style="color:#a6e22e">mgr</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="caches-informers">Caches (informers?)<a hidden class="anchor" aria-hidden="true" href="#caches-informers">#</a></h4>
+<p>We know what a cache is, but what is an informer and why do we consider them the same in the context of controller-runtime?</p>
+<p><strong>Cache</strong> in controller-runtime is essentially an in-memory store of Kubernetes objects. It keeps copies of resources (Pods, Deployments, CRs, etc.) so our controllers can read quickly without hitting the API server every time.</p>
+<p><strong>Informer</strong> is a mechanism that feeds the cache. It &ldquo;informs&rdquo; our controller about changes in resources. Specifically, it:</p>
+<ul>
+<li>Watches the Kubernetes API for a particular resource type.</li>
+<li>Keeps the cache updated with the latest state.</li>
+<li>Triggers events (Add, Update, Delete) so our controller can react.</li>
+</ul>
+<p>In controller-runtime, caches are backed by informers, which watch Kubernetes resources and keep local copies up-to-date. This allows controllers to read from the cache for speed instead of querying the API server directly.</p>
+<pre tabindex="0"><code>Kubernetes API Server
+         │
+         ▼
+      Informer
+         │  (event)
+         ▼
+       Queue ──&gt; Reconciler
+         │          │
+         │          ▼
+         │      Reconcile(obj)
+         │
+         └─ retries / backoff if needed
+</code></pre><p>Due to the informer, our controller will know that something has changed without constantly polling the KAPI.</p>
+<h4 id="reconciler-queue">Reconciler Queue<a hidden class="anchor" aria-hidden="true" href="#reconciler-queue">#</a></h4>
+<p>The queue is an internal <em>work queue</em> that holds &ldquo;reconciliation requests&rdquo; — it references to Kubernetes objects that need to be reconciled. This is a thread-safe queue for storing items (usually <code>ctrl.Requests</code>). When an event occurs (create, update, delete) that affects a watched object, the controller enqueues a request for the Reconciler to process. The Reconciler then pulls items from the queue one at a time (or in parallel) and runs the <code>Reconcile()</code> function.</p>
+<p>The Queue is:</p>
+<ul>
+<li>Event-driven: manually loop over all objects; the queue is populated by informers whenever a relevant change happens.</li>
+<li>Rate-limiting: it can retry failed reconciliations using backoff, preventing hot loops when errors occur.</li>
+<li>Deduplication: if multiple events happen for the same object before it’s processed, the queue usually coalesces them into a single reconciliation request to avoid redundant work.</li>
+<li>Order isn&rsquo;t guaranteed: Items are generally processed in FIFO order, but because of retries and concurrency, exact ordering isn&rsquo;t guaranteed.</li>
+</ul>
+<h4 id="reconciler">Reconciler<a hidden class="anchor" aria-hidden="true" href="#reconciler">#</a></h4>
+<p>A <strong>Reconciler</strong> is the core of a controller - the logic that defines <strong>what to do</strong> when a Kubernetes object changes.
+It implements:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Reconciler</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Reconcile</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">req</span> <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Request</span>) (<span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Result</span>, <span style="color:#66d9ef">error</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Lets check the signature:
+<code>ctx context.Context</code> - Used to handle timeouts, cancellations, and deadlines (especially during shutdown).</p>
+<p><code>req ctrl.Request</code> - Carries metadata about <strong>which object</strong> needs reconciling:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Request</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">NamespacedName</span> <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">NamespacedName</span> <span style="color:#75715e">// {Namespace, Name}</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This identifies a <em>single object instance</em> (like <code>&quot;default/my-app&quot;</code>).</p>
+<p>Returns -&gt; <code>(ctrl.Result, error)</code></p>
+<table>
+  <thead>
+      <tr>
+          <th>Return Value</th>
+          <th>Meaning</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>ctrl.Result{}</code></td>
+          <td>Reconciliation successful - don&rsquo;t requeue.</td>
+      </tr>
+      <tr>
+          <td><code>ctrl.Result{Requeue: true}</code></td>
+          <td>Re-run immediately.</td>
+      </tr>
+      <tr>
+          <td><code>ctrl.Result{RequeueAfter: 10 * time.Second}</code></td>
+          <td>Re-run after some delay.</td>
+      </tr>
+      <tr>
+          <td><code>error != nil</code></td>
+          <td>Error - requeue with backoff.</td>
+      </tr>
+  </tbody>
+</table>
+<p>This mechanism lets us control <em>how often</em> reconciliation runs and how errors are retried.</p>
+<p>The Reconciler doesn&rsquo;t run constantly - it&rsquo;s <strong>event-driven</strong>.</p>
+<ol>
+<li>The <strong>primary resource</strong> changes (e.g., a CRD or Deployment).</li>
+<li>A <strong>dependent resource</strong> changes (e.g., Pod, Service, etc.).</li>
+<li>A <strong>manual requeue</strong> or <code>RequeueAfter</code> is triggered.</li>
+<li>The system detects a transient error and retries.</li>
+</ol>
+<p>So <code>Reconcile()</code> is not a loop we write - it&rsquo;s a <em>callback</em> triggered by events.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MyReconciler</span>) <span style="color:#a6e22e">Reconcile</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">req</span> <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Request</span>) (<span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Result</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Read the object from cache</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">myObj</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">myv1</span>.<span style="color:#a6e22e">MyResource</span>{}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Client</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">NamespacedName</span>, <span style="color:#a6e22e">myObj</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Result</span>{}, <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">IgnoreNotFound</span>(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Business logic: ensure a Deployment exists for this resource</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">desired</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newDeploymentForMyResource</span>(<span style="color:#a6e22e">myObj</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">SetControllerReference</span>(<span style="color:#a6e22e">myObj</span>, <span style="color:#a6e22e">desired</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Scheme</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Result</span>{}, <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Apply the desired Deployment</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Client</span>.<span style="color:#a6e22e">Create</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">desired</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> !<span style="color:#a6e22e">apierrors</span>.<span style="color:#a6e22e">IsAlreadyExists</span>(<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Result</span>{}, <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Result</span>{}, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With this we are all set up in our journey to write our operator.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/k8s/">K8s</a></li>
+      <li><a href="http://localhost:1313/tags/kubernetes/">Kubernetes</a></li>
+      <li><a href="http://localhost:1313/tags/operator/">Operator</a></li>
+      <li><a href="http://localhost:1313/tags/controller-runtime/">Controller-Runtime</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

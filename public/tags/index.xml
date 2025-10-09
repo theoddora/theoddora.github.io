@@ -6,8 +6,36 @@
     <description>Recent content in Tags on Theddy Dev Space</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Apr 2025 16:28:36 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 09 Oct 2025 18:15:00 +0300</lastBuildDate>
     <atom:link href="https://theddy.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Controller-Runtime</title>
+      <link>https://theddy.dev/tags/controller-runtime/</link>
+      <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
+      <guid>https://theddy.dev/tags/controller-runtime/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>K8s</title>
+      <link>https://theddy.dev/tags/k8s/</link>
+      <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
+      <guid>https://theddy.dev/tags/k8s/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://theddy.dev/tags/kubernetes/</link>
+      <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
+      <guid>https://theddy.dev/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Operator</title>
+      <link>https://theddy.dev/tags/operator/</link>
+      <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
+      <guid>https://theddy.dev/tags/operator/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Console</title>
       <link>https://theddy.dev/tags/console/</link>

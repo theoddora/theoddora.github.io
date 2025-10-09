@@ -2,10 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://theddy.dev/about/</loc>
-    <lastmod>2025-09-20T12:00:00+00:00</lastmod>
+    <loc>https://theddy.dev/posts/</loc>
+    <lastmod>2025-10-09T18:16:25+03:00</lastmod>
   </url><url>
     <loc>https://theddy.dev/</loc>
+    <lastmod>2025-10-09T18:16:25+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/tags/controller-runtime/</loc>
+    <lastmod>2025-10-09T18:15:00+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/tags/k8s/</loc>
+    <lastmod>2025-10-09T18:15:00+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/tags/kubernetes/</loc>
+    <lastmod>2025-10-09T18:15:00+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/tags/operator/</loc>
+    <lastmod>2025-10-09T18:15:00+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/tags/</loc>
+    <lastmod>2025-10-09T18:15:00+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/posts/operator-1/</loc>
+    <lastmod>2025-10-09T18:15:00+03:00</lastmod>
+  </url><url>
+    <loc>https://theddy.dev/about/</loc>
     <lastmod>2025-09-20T12:00:00+00:00</lastmod>
   </url><url>
     <loc>https://theddy.dev/tags/console/</loc>
@@ -14,13 +35,7 @@
     <loc>https://theddy.dev/tags/linux/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>https://theddy.dev/posts/</loc>
-    <lastmod>2025-04-23T16:28:36+03:00</lastmod>
-  </url><url>
     <loc>https://theddy.dev/tags/shell/</loc>
-    <lastmod>2025-04-23T16:28:36+03:00</lastmod>
-  </url><url>
-    <loc>https://theddy.dev/tags/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
     <loc>https://theddy.dev/tags/terminal/</loc>

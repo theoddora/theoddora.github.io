@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head>
-	<meta name="generator" content="Hugo 0.151.0"><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Theddy Dev Space</title>
-
-<meta name="description" content="">
+<meta name="robots" content="noindex, nofollow">
+<title>Writing Your First Kubernetes Operator - The Definitions | Theddy Dev Space</title>
+<meta name="keywords" content="k8s, kubernetes, operator, controller-runtime">
+<meta name="description" content="Next part">
 <meta name="author" content="">
-<link rel="canonical" href="https://theddy.dev/">
+<link rel="canonical" href="http://localhost:1313/posts/operator-2/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://theddy.dev/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://theddy.dev/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://theddy.dev/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://theddy.dev/apple-touch-icon.png">
-<link rel="mask-icon" href="https://theddy.dev/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://theddy.dev/index.xml">
-<link rel="alternate" hreflang="en" href="https://theddy.dev/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/operator-2/">
 <noscript>
     <style>
         #theme-toggle,
@@ -57,31 +55,10 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://theddy.dev/">
-  <meta property="og:site_name" content="Theddy Dev Space">
-  <meta property="og:title" content="Theddy Dev Space">
-  <meta property="og:locale" content="en-us">
-  <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Theddy Dev Space">
-<meta name="twitter:description" content="">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Theddy Dev Space",
-  "url": "https://theddy.dev/",
-  "description": "",
-  "logo": "https://theddy.dev/favicon.ico",
-  "sameAs": [
-      
-  ]
-}
-</script>
+</noscript>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -96,7 +73,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://theddy.dev/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
+            <a href="http://localhost:1313/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -122,54 +99,48 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://theddy.dev/" title="Theddy Dev Space">
-                    <span class="active">home</span>
+                <a href="http://localhost:1313/" title="Theddy Dev Space">
+                    <span>home</span>
                 </a>
             </li>
             <li>
-                <a href="https://theddy.dev/tags/" title="tags">
+                <a href="http://localhost:1313/tags/" title="tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://theddy.dev/about/" title="about">
+                <a href="http://localhost:1313/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
-<main class="main"> 
+<main class="main">
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Writing Your First Kubernetes Operator - The Definitions
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>If you’re like me and just starting your Kubernetes journey, you’ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:
-controller-runtime — a Go framework for building controllers and operators kubebuilder — a CLI tool that scaffolds an operator project using controller-runtime Controller vs Operator Controller = logic that keeps the actual state aligned with the desired state.
-Operator = a controller that manages an application like a human operator would, using Custom Resources.
-In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowledge
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-10-09 18:15:00 +0300 EEST'>October 9, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to Writing Your First Kubernetes Operator - The Definitions" href="https://theddy.dev/posts/operator-1/"></a>
-</article>
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Writing Your First Kubernetes Operator - The Definitions
+    </h1>
+    <div class="post-meta"><span title='2025-10-09 18:16:25 +0300 EEST'>October 9, 2025</span>
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Terminal Emulators (&#43; Ghostty Setup)
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:
-Last login: Sat Apr 19 00:15:16 on ttys001 What does ttys001 even mean?
-🖥️ Terminal, Console, TTY — What’s the Difference? That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:
-...</p>
+</div>
+  </header> 
+  <div class="post-content"><p>Next part</p>
+
+
   </div>
-  <footer class="entry-footer"><span title='2025-04-23 16:28:36 +0300 EEST'>April 23, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to Terminal Emulators (&#43; Ghostty Setup)" href="https://theddy.dev/posts/terminal-setup/"></a>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/k8s/">K8s</a></li>
+      <li><a href="http://localhost:1313/tags/kubernetes/">Kubernetes</a></li>
+      <li><a href="http://localhost:1313/tags/operator/">Operator</a></li>
+      <li><a href="http://localhost:1313/tags/controller-runtime/">Controller-Runtime</a></li>
+    </ul>
+  </footer>
 </article>
     </main>
     
