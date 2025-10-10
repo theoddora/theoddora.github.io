@@ -21,3 +21,19 @@ menu:
 
 params:
   disableSpecial1stPost: true
+  showToc: true
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+  ShowWordCount: true
+  UseHugoToc: true
+
+markup:
+  tableOfContents:
+    endLevel: 5
+    ordered: false
+    startLevel: 2
+
+# home-info mode
+homeInfoParams:
+  Title: "Hi there \U0001F44B"
+  Content: Welcome to my blog

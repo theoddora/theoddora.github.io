@@ -1,0 +1,13 @@
+{{- define "main" -}}
+{{ partial "toc_top" . }}
+<article class="article">
+  {{ partial "page_header" . }}
+  <div class="article-container">
+    <div class="article-style">
+      {{ .Content }}
+    </div>
+    {{ partial "page_footer" . }}
+  </div>
+</article>
+{{ partial "toc_bottom" . }}
+{{- end -}}

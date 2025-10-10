@@ -9,21 +9,11 @@
     <lastBuildDate>Thu, 09 Oct 2025 18:15:00 +0300</lastBuildDate>
     <atom:link href="https://theddy.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Writing Your First Kubernetes Operator - The Definitions</title>
-      <link>https://theddy.dev/posts/operator-1/</link>
+      <title>Demystifying Kubernetes `controller-runtime`</title>
+      <link>https://theddy.dev/posts/controller-runtime/</link>
       <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
-      <guid>https://theddy.dev/posts/operator-1/</guid>
-      <description>&lt;p&gt;If you&amp;rsquo;re like me and just starting your Kubernetes journey, you&amp;rsquo;ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;controller-runtime&lt;/code&gt; — a Go framework for building controllers and operators&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;kubebuilder&lt;/code&gt; — a CLI tool that scaffolds an operator project using &lt;code&gt;controller-runtime&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;controller-vs-operator&#34;&gt;Controller vs Operator&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Controller&lt;/strong&gt; = logic that keeps the actual state aligned with the desired state.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Operator&lt;/strong&gt; = a controller that manages an application like a human operator would, using &lt;strong&gt;Custom Resources&lt;/strong&gt;.&lt;br&gt;
-In short: &lt;strong&gt;Operator = Controller + Custom Resource (CRD) + Domain Knowledge&lt;/strong&gt;&lt;/p&gt;</description>
+      <guid>https://theddy.dev/posts/controller-runtime/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;re like me and just starting your Kubernetes journey, you&amp;rsquo;ll likely need to write an &lt;a href=&#34;https://kubernetes.io/docs/concepts/extend-kubernetes/operator/&#34;&gt;Operator&lt;/a&gt; to manage your &lt;a href=&#34;https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/&#34;&gt;custom resources&lt;/a&gt;. Kubernetes offers a high-level Go framework called &lt;a href=&#34;https://github.com/kubernetes-sigs/controller-runtime&#34;&gt;&lt;code&gt;controller-runtime&lt;/code&gt;&lt;/a&gt; for building such operators; frameworks like &lt;a href=&#34;https://book.kubebuilder.io/&#34;&gt;Kubebuilder&lt;/a&gt;  are built on top of it. What do I mean by custom resources? Well, anything that you would create which is not part of the Kubernetes well-known built-in resources - Pods, Deployments, ReplicaSets, etc. An example might be you adding a new custom &lt;code&gt;Backup&lt;/code&gt; resource whose main purpose is to do a scheduled cron job to upload backups to a desired target storage solution.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>

@@ -1,34 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Writing Your First Kubernetes Operator - The Definitions | Theddy Dev Space</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Demystifying Kubernetes `controller-runtime` | Theddy Dev Space</title>
 <meta name="keywords" content="k8s, kubernetes, operator, controller-runtime">
-<meta name="description" content="If you&rsquo;re like me and just starting your Kubernetes journey, you&rsquo;ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:
-
-controller-runtime — a Go framework for building controllers and operators
-kubebuilder — a CLI tool that scaffolds an operator project using controller-runtime
-
-Controller vs Operator
-
-Controller = logic that keeps the actual state aligned with the desired state.
-
-Operator = a controller that manages an application like a human operator would, using Custom Resources.
-In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowledge">
+<meta name="description" content="If you&rsquo;re like me and just starting your Kubernetes journey, you&rsquo;ll likely need to write an Operator to manage your custom resources. Kubernetes offers a Go high-level framework for building such operators called controller-runtime and others (kubebuilder) leverage it.
+What do I mean by custom resources? Well, anything that you would create which is not part of the Kubernetes well-known managed resources - Pods, Deployments, ReplicaSets, etc. An example might be you adding a new custom Backup resource whose main purpose is to do a scheduled cron job to upload backups to a desired target storage solution.">
 <meta name="author" content="">
-<link rel="canonical" href="https://theddy.dev/posts/operator-1/">
+<link rel="canonical" href="http://localhost:1313/posts/operator-1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://theddy.dev/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://theddy.dev/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://theddy.dev/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://theddy.dev/apple-touch-icon.png">
-<link rel="mask-icon" href="https://theddy.dev/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://theddy.dev/posts/operator-1/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/operator-1/">
 <noscript>
     <style>
         #theme-toggle,
@@ -65,86 +56,7 @@ In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowled
         }
 
     </style>
-</noscript><meta property="og:url" content="https://theddy.dev/posts/operator-1/">
-  <meta property="og:site_name" content="Theddy Dev Space">
-  <meta property="og:title" content="Writing Your First Kubernetes Operator - The Definitions">
-  <meta property="og:description" content="If you’re like me and just starting your Kubernetes journey, you’ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:
-controller-runtime — a Go framework for building controllers and operators kubebuilder — a CLI tool that scaffolds an operator project using controller-runtime Controller vs Operator Controller = logic that keeps the actual state aligned with the desired state.
-Operator = a controller that manages an application like a human operator would, using Custom Resources.
-In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowledge">
-  <meta property="og:locale" content="en-us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-10-09T18:15:00+03:00">
-    <meta property="article:modified_time" content="2025-10-09T18:15:00+03:00">
-    <meta property="article:tag" content="K8s">
-    <meta property="article:tag" content="Kubernetes">
-    <meta property="article:tag" content="Operator">
-    <meta property="article:tag" content="Controller-Runtime">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Writing Your First Kubernetes Operator - The Definitions">
-<meta name="twitter:description" content="If you&rsquo;re like me and just starting your Kubernetes journey, you&rsquo;ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:
-
-controller-runtime — a Go framework for building controllers and operators
-kubebuilder — a CLI tool that scaffolds an operator project using controller-runtime
-
-Controller vs Operator
-
-Controller = logic that keeps the actual state aligned with the desired state.
-
-Operator = a controller that manages an application like a human operator would, using Custom Resources.
-In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowledge">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://theddy.dev/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Writing Your First Kubernetes Operator - The Definitions",
-      "item": "https://theddy.dev/posts/operator-1/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Writing Your First Kubernetes Operator - The Definitions",
-  "name": "Writing Your First Kubernetes Operator - The Definitions",
-  "description": "If you\u0026rsquo;re like me and just starting your Kubernetes journey, you\u0026rsquo;ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:\ncontroller-runtime — a Go framework for building controllers and operators kubebuilder — a CLI tool that scaffolds an operator project using controller-runtime Controller vs Operator Controller = logic that keeps the actual state aligned with the desired state.\nOperator = a controller that manages an application like a human operator would, using Custom Resources.\nIn short: Operator = Controller + Custom Resource (CRD) + Domain Knowledge\n",
-  "keywords": [
-    "k8s", "kubernetes", "operator", "controller-runtime"
-  ],
-  "articleBody": "If you’re like me and just starting your Kubernetes journey, you’ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:\ncontroller-runtime — a Go framework for building controllers and operators kubebuilder — a CLI tool that scaffolds an operator project using controller-runtime Controller vs Operator Controller = logic that keeps the actual state aligned with the desired state.\nOperator = a controller that manages an application like a human operator would, using Custom Resources.\nIn short: Operator = Controller + Custom Resource (CRD) + Domain Knowledge\nIn this guide, we will focus on writing an operator using controller runtime.\nBut first, it is important to have a conceptual idea of what we are using to achieve our goal.\nAPI Machinery and Controller Runtime We will add conceptual knowledge and main definitions of our building blocks:\nAPI Machinery - \"k8s.io/apimachinery\" Controller Runtime - \"sigs.k8s.io/controller-runtime\" Architecture On the bottom layer, we have the Kubernetes API server and etcd.\nBuilding on top of that is API Machinery, and on top of that, we have controller-runtime.\n+---------------------------------------------------------+ | controller-runtime (framework for building controllers) | | ├── Manager | | ├── Controller | | ├── Reconciler | | ├── Client (wraps API Machinery client) | +---------------------------------------------------------+ | Kubernetes API Machinery (low-level API tools) | | ├── runtime.Scheme, Object, Serializer | | ├── GroupVersionKind, GroupResource | | ├── DeepCopy, Conversion, Meta types | +---------------------------------------------------------+ | Kubernetes API Server \u0026 etcd | +---------------------------------------------------------+ API Machinery API Machinery is the foundation that defines what Kubernetes objects are and how they are encoded and handled. It tells Kubernetes how to understand, version, and serialize objects.\nThis is the core library of Kubernetes - the low-level building blocks that make the Kubernetes API function.\nIt handles all the “API plumbing” such as:\nSerialization and deserialization (JSON \u003c-\u003e Go structs) Type registration (Scheme, GroupVersionKind) Metadata (ObjectMeta, TypeMeta) Versioning and conversion logic Deep copying and object interfaces REST resource identification (GroupVersionResource, etc.) Outlining the main types our Operator will use\nTypeMeta - Serialization, deserialization, API routing ObjectMeta - Uniqueness, lifecycle, metadata tracking GroupVersionResource - Kubernetes API resources are fully identified by a group-version-resource (GVR) triple: example - group:apps, version: v1, resource: deployment Key packages of API Machinery:\nruntime - defines runtime.Object, Scheme, and type registration. schema - defines GroupVersion, GroupKind, GroupResource, etc. metav1 - defines metadata structs like ObjectMeta, ListMeta. util/runtime, util/validation - utility helpers. fields, labels, etc. - for selectors. What is a Schema actually? A Schema (represented by runtime.Scheme in Go) defines how objects of different types are recognized, versioned, and converted. It acts as a registry of all known Kubernetes types in our controller.\nWhen we register a type with a Scheme, we are actually saying:\n“This Go struct represents a Kubernetes resource.” “Here’s its group, version, and kind (GVK).” “Here’s how to convert it between versions if needed.” The Scheme is crucial because it allows our operator to:\nEncode and decode objects to/from JSON or YAML. Identify an object’s type when reading from the API or cache. Support version conversions when our CRD evolves. Without a Scheme, our controller wouldn’t know how to handle our custom resources properly, and most controller-runtime operations like Get, List, or Create would fail.\nController runtime Key components and architecture of the controller-runtime:\n┌──────────────────────────────────────────┐ │ Manager │ │ - sets up cache, client, recorder │ │ - starts controllers │ └──────────────┬───────────────────────────┘ │ ▼ ┌─────────────────────┐ │ Controller │ │ - watches resources │ │ - enqueues requests │ └──────────┬──────────┘ │ ▼ ┌─────────────────────┐ │ Reconciler │ │ - gets objects │ │ - compares desired │ │ - updates cluster │ │ - reports status │ └─────────────────────┘ The controller runtime is a high-level framework for building controllers and operators in Go - built on top of API Machinery.\nIt provides:\nA Manager (lifecycle \u0026 dependency injection) Controllers and Reconcilers A unified Client (reads from cache, writes to API) - a Kubernetes API client Shared Caches (informers under the hood) Support for webhooks, leader election, and metrics Client Unified Client (reads from cache, writes to API)\n“Unified” = one consistent interface for both cached reads and direct writes, instead of two separate systems.\nWhen we create a Manager, it will automatically build a Client and inject it into our controllers.\nmgr, _ := ctrl.NewManager(ctrl.GetConfigOrDie(), ctrl.Options{ Scheme: scheme, }) myReconciler := \u0026controllers.MyReconciler{ Client: mgr.GetClient(), // \u003c-- here's the client } So, when our controller does something like:\npod := \u0026corev1.Pod{} err := r.Client.Get(ctx, client.ObjectKey{Name: \"mypod\", Namespace: \"default\"}, pod) it’s using the Client to get the Pod object - usually from the cache (for speed).\nOr when it does:\nr.Client.Update(ctx, pod) it’s using the Client to write the updated Pod back to the Kubernetes API server.\nManager Kubernetes controllers need a shared environment:\nOne Client that uses the shared informer cache One Scheme for object type conversions One Recorder for emitting events One Config (the REST client configuration) One APIReader for uncached reads So the Manager centralizes them, then injects them into every controller or runnable that needs them.\nDependency injection means we don’t create our dependencies ourselves, we receive them from something else that manages their lifecycle. Instead of our controller manually constructing clients, caches, recorders, etc., the Manager creates them once, shares them across all controllers, and injects them into each component.\nIn Go, controller-runtime doesn’t use a reflection-based DI framework like Java’s Spring - it uses struct fields and interfaces to achieve DI statically.\nEach controller’s Reconciler usually looks like this:\ntype MyReconciler struct { client.Client Scheme *runtime.Scheme } Then in main.go, it wires it up like this:\nreconciler := \u0026controllers.MyReconciler{ Client: mgr.GetClient(), Scheme: mgr.GetScheme(), } if err := reconciler.SetupWithManager(mgr); err != nil { log.Fatal(err) } Caches (informers?) We know what a cache is, but what is an informer and why do we consider them the same in the context of controller-runtime?\nCache in controller-runtime is essentially an in-memory store of Kubernetes objects. It keeps copies of resources (Pods, Deployments, CRs, etc.) so our controllers can read quickly without hitting the API server every time.\nInformer is a mechanism that feeds the cache. It “informs” our controller about changes in resources. Specifically, it:\nWatches the Kubernetes API for a particular resource type. Keeps the cache updated with the latest state. Triggers events (Add, Update, Delete) so our controller can react. In controller-runtime, caches are backed by informers, which watch Kubernetes resources and keep local copies up-to-date. This allows controllers to read from the cache for speed instead of querying the API server directly.\nKubernetes API Server │ ▼ Informer │ (event) ▼ Queue ──\u003e Reconciler │ │ │ ▼ │ Reconcile(obj) │ └─ retries / backoff if needed Due to the informer, our controller will know that something has changed without constantly polling the KAPI.\nReconciler Queue The queue is an internal work queue that holds “reconciliation requests” — it references to Kubernetes objects that need to be reconciled. This is a thread-safe queue for storing items (usually ctrl.Requests). When an event occurs (create, update, delete) that affects a watched object, the controller enqueues a request for the Reconciler to process. The Reconciler then pulls items from the queue one at a time (or in parallel) and runs the Reconcile() function.\nThe Queue is:\nEvent-driven: manually loop over all objects; the queue is populated by informers whenever a relevant change happens. Rate-limiting: it can retry failed reconciliations using backoff, preventing hot loops when errors occur. Deduplication: if multiple events happen for the same object before it’s processed, the queue usually coalesces them into a single reconciliation request to avoid redundant work. Order isn’t guaranteed: Items are generally processed in FIFO order, but because of retries and concurrency, exact ordering isn’t guaranteed. Reconciler A Reconciler is the core of a controller - the logic that defines what to do when a Kubernetes object changes. It implements:\ntype Reconciler interface { Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) } Lets check the signature: ctx context.Context - Used to handle timeouts, cancellations, and deadlines (especially during shutdown).\nreq ctrl.Request - Carries metadata about which object needs reconciling:\ntype Request struct { NamespacedName types.NamespacedName // {Namespace, Name} } This identifies a single object instance (like \"default/my-app\").\nReturns -\u003e (ctrl.Result, error)\nReturn Value Meaning ctrl.Result{} Reconciliation successful - don’t requeue. ctrl.Result{Requeue: true} Re-run immediately. ctrl.Result{RequeueAfter: 10 * time.Second} Re-run after some delay. error != nil Error - requeue with backoff. This mechanism lets us control how often reconciliation runs and how errors are retried.\nThe Reconciler doesn’t run constantly - it’s event-driven.\nThe primary resource changes (e.g., a CRD or Deployment). A dependent resource changes (e.g., Pod, Service, etc.). A manual requeue or RequeueAfter is triggered. The system detects a transient error and retries. So Reconcile() is not a loop we write - it’s a callback triggered by events.\nExample:\nfunc (r *MyReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) { // Read the object from cache myObj := \u0026myv1.MyResource{} if err := r.Client.Get(ctx, req.NamespacedName, myObj); err != nil { return ctrl.Result{}, client.IgnoreNotFound(err) } // Business logic: ensure a Deployment exists for this resource desired := newDeploymentForMyResource(myObj) if err := ctrl.SetControllerReference(myObj, desired, r.Scheme); err != nil { return ctrl.Result{}, err } // Apply the desired Deployment if err := r.Client.Create(ctx, desired); err != nil \u0026\u0026 !apierrors.IsAlreadyExists(err) { return ctrl.Result{}, err } return ctrl.Result{}, nil } With this we are all set up in our journey to write our operator.\n",
-  "wordCount" : "1567",
-  "inLanguage": "en",
-  "datePublished": "2025-10-09T18:15:00+03:00",
-  "dateModified": "2025-10-09T18:15:00+03:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://theddy.dev/posts/operator-1/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Theddy Dev Space",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://theddy.dev/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
 </head>
 
 <body class="" id="top">
@@ -162,7 +74,7 @@ In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowled
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://theddy.dev/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
+            <a href="http://localhost:1313/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -188,17 +100,17 @@ In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowled
         </div>
         <ul id="menu">
             <li>
-                <a href="https://theddy.dev/" title="Theddy Dev Space">
+                <a href="http://localhost:1313/" title="Theddy Dev Space">
                     <span>home</span>
                 </a>
             </li>
             <li>
-                <a href="https://theddy.dev/tags/" title="tags">
+                <a href="http://localhost:1313/tags/" title="tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://theddy.dev/about/" title="about">
+                <a href="http://localhost:1313/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
@@ -211,115 +123,25 @@ In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowled
   <header class="post-header">
     
     <h1 class="post-title entry-hint-parent">
-      Writing Your First Kubernetes Operator - The Definitions
+      Demystifying Kubernetes `controller-runtime`
     </h1>
     <div class="post-meta"><span title='2025-10-09 18:15:00 +0300 EEST'>October 9, 2025</span>
 
 </div>
   </header> 
-  <div class="post-content"><p>If you&rsquo;re like me and just starting your Kubernetes journey, you&rsquo;ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:</p>
-<ul>
-<li><code>controller-runtime</code> — a Go framework for building controllers and operators</li>
-<li><code>kubebuilder</code> — a CLI tool that scaffolds an operator project using <code>controller-runtime</code></li>
-</ul>
+  <div class="post-content"><p>If you&rsquo;re like me and just starting your Kubernetes journey, you&rsquo;ll likely need to write an <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Operator</a> to manage your <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/">custom resources</a>. Kubernetes offers a Go high-level framework for building such operators called <code>controller-runtime</code> and others (<a href="https://book.kubebuilder.io/">kubebuilder</a>) leverage it.
+What do I mean by custom resources? Well, anything that you would create which is not part of the Kubernetes well-known managed resources - Pods, Deployments, ReplicaSets, etc. An example might be you adding a new custom <code>Backup</code> resource whose main purpose is to do a scheduled cron job to upload backups to a desired target storage solution.</p>
 <h4 id="controller-vs-operator">Controller vs Operator<a hidden class="anchor" aria-hidden="true" href="#controller-vs-operator">#</a></h4>
 <blockquote>
 <p><strong>Controller</strong> = logic that keeps the actual state aligned with the desired state.</p></blockquote>
 <blockquote>
-<p><strong>Operator</strong> = a controller that manages an application like a human operator would, using <strong>Custom Resources</strong>.<br>
-In short: <strong>Operator = Controller + Custom Resource (CRD) + Domain Knowledge</strong></p></blockquote>
-<p>In this guide, we will focus on writing an operator using controller runtime.</p>
-<p>But first, it is important to have a conceptual idea of what we are using to achieve our goal.</p>
+<p><strong>Operator</strong> = Controller + Custom Resource (CRD) + Domain Knowledge</p></blockquote>
+<p>In this guide, we will focus on understanding the components behind <code>controller-runtime</code> and what capabilities it has to offer. Where does it fit the whole kubernetes picture? What capabilities does it provide of write operators?</p>
 <hr>
-<h2 id="api-machinery-and-controller-runtime">API Machinery and Controller Runtime<a hidden class="anchor" aria-hidden="true" href="#api-machinery-and-controller-runtime">#</a></h2>
-<p>We will add conceptual knowledge and main definitions of our building blocks:</p>
-<ul>
-<li>API Machinery - <code>&quot;k8s.io/apimachinery&quot;</code></li>
-<li>Controller Runtime - <code>&quot;sigs.k8s.io/controller-runtime&quot;</code></li>
-</ul>
-<h3 id="architecture">Architecture<a hidden class="anchor" aria-hidden="true" href="#architecture">#</a></h3>
-<p>On the bottom layer, we have the <strong>Kubernetes API server</strong> and <strong>etcd</strong>.<br>
-Building on top of that is <strong>API Machinery</strong>, and on top of that, we have <strong>controller-runtime</strong>.</p>
-<pre tabindex="0"><code>+---------------------------------------------------------+
-| controller-runtime (framework for building controllers)  |
-|   ├── Manager                                            |
-|   ├── Controller                                         |
-|   ├── Reconciler                                         |
-|   ├── Client (wraps API Machinery client)                |
-+---------------------------------------------------------+
-| Kubernetes API Machinery (low-level API tools)           |
-|   ├── runtime.Scheme, Object, Serializer                 |
-|   ├── GroupVersionKind, GroupResource                    |
-|   ├── DeepCopy, Conversion, Meta types                   |
-+---------------------------------------------------------+
-| Kubernetes API Server &amp; etcd                             |
-+---------------------------------------------------------+
-</code></pre><h2 id="api-machinery">API Machinery<a hidden class="anchor" aria-hidden="true" href="#api-machinery">#</a></h2>
-<p>API Machinery is the <strong>foundation</strong> that defines <em>what</em> Kubernetes objects are and <em>how</em> they are encoded and handled. It tells Kubernetes how to understand, version, and serialize objects.</p>
-<p>This is the <strong>core library</strong> of Kubernetes - the low-level building blocks that make the Kubernetes API function.</p>
-<p>It handles all the &ldquo;API plumbing&rdquo; such as:</p>
-<ul>
-<li>Serialization and deserialization (JSON &lt;-&gt; Go structs)</li>
-<li>Type registration (<code>Scheme</code>, <code>GroupVersionKind</code>)</li>
-<li>Metadata (<code>ObjectMeta</code>, <code>TypeMeta</code>)</li>
-<li>Versioning and conversion logic</li>
-<li>Deep copying and object interfaces</li>
-<li>REST resource identification (<code>GroupVersionResource</code>, etc.)</li>
-</ul>
-<p>Outlining the main types our Operator will use</p>
-<ul>
-<li><code>TypeMeta</code> - Serialization, deserialization, API routing</li>
-<li><code>ObjectMeta</code> - Uniqueness, lifecycle, metadata tracking</li>
-<li><code>GroupVersionResource</code> - Kubernetes API resources are fully identified by a <strong>group-version-resource (GVR)</strong> triple: example - group:apps, version: v1, resource: deployment</li>
-</ul>
-<p><strong>Key packages of API Machinery:</strong></p>
-<ul>
-<li><code>runtime</code> - defines <code>runtime.Object</code>, <code>Scheme</code>, and type registration.</li>
-<li><code>schema</code> - defines <code>GroupVersion</code>, <code>GroupKind</code>, <code>GroupResource</code>, etc.</li>
-<li><code>metav1</code> - defines metadata structs like <code>ObjectMeta</code>, <code>ListMeta</code>.</li>
-<li><code>util/runtime</code>, <code>util/validation</code> - utility helpers.</li>
-<li><code>fields</code>, <code>labels</code>, etc. - for selectors.</li>
-</ul>
-<h3 id="what-is-a-schema-actually">What is a <code>Schema</code> actually?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-schema-actually">#</a></h3>
-<p>A <strong>Schema</strong> (represented by <code>runtime.Scheme</code> in Go) defines <strong>how objects of different types are recognized, versioned, and converted</strong>. It acts as a <strong>registry</strong> of all known Kubernetes types in our controller.</p>
-<p>When we register a type with a Scheme, we are actually saying:</p>
-<ul>
-<li>&ldquo;This Go struct represents a Kubernetes resource.&rdquo;</li>
-<li>&ldquo;Here&rsquo;s its group, version, and kind (GVK).&rdquo;</li>
-<li>&ldquo;Here&rsquo;s how to convert it between versions if needed.&rdquo;</li>
-</ul>
-<p>The Scheme is crucial because it allows our operator to:</p>
-<ol>
-<li>Encode and decode objects to/from JSON or YAML.</li>
-<li>Identify an object&rsquo;s type when reading from the API or cache.</li>
-<li>Support version conversions when our CRD evolves.</li>
-</ol>
-<p>Without a Scheme, our controller wouldn&rsquo;t know how to handle our custom resources properly, and most controller-runtime operations like <code>Get</code>, <code>List</code>, or <code>Create</code> would fail.</p>
+<h2 id="controller-runtime-dependencies"><code>controller-runtime</code> dependencies<a hidden class="anchor" aria-hidden="true" href="#controller-runtime-dependencies">#</a></h2>
+<p>What does the controller-runtime depend on? The main thing that concerns us is the API Machinery - <code>&quot;k8s.io/apimachinery&quot;</code>. It has been covered as the last part of this article so we have a full understanding of the types provided but also we don&rsquo;t lose focus on the main part.</p>
 <h2 id="controller-runtime">Controller runtime<a hidden class="anchor" aria-hidden="true" href="#controller-runtime">#</a></h2>
-<p>Key components and architecture of the controller-runtime:</p>
-<pre tabindex="0"><code>       ┌──────────────────────────────────────────┐
-       │                Manager                   │
-       │  - sets up cache, client, recorder       │
-       │  - starts controllers                    │
-       └──────────────┬───────────────────────────┘
-                      │
-                      ▼
-             ┌─────────────────────┐
-             │     Controller      │
-             │ - watches resources │
-             │ - enqueues requests │
-             └──────────┬──────────┘
-                        │
-                        ▼
-             ┌─────────────────────┐
-             │     Reconciler      │
-             │ - gets objects      │
-             │ - compares desired  │
-             │ - updates cluster   │
-             │ - reports status    │
-             └─────────────────────┘
-</code></pre><p>The controller runtime is a <strong>high-level framework</strong> for building <strong>controllers and operators</strong> in Go - built <em>on top of API Machinery</em>.</p>
-<p><strong>It provides:</strong></p>
+<p>The controller runtime is a <strong>high-level framework</strong> for building <strong>controllers and operators</strong> in Go - built <em>on top of API Machinery</em>. It provides:</p>
 <ul>
 <li>A <strong>Manager</strong> (lifecycle &amp; dependency injection)</li>
 <li><strong>Controllers</strong> and <strong>Reconcilers</strong></li>
@@ -395,7 +217,7 @@ Building on top of that is <strong>API Machinery</strong>, and on top of that, w
          └─ retries / backoff if needed
 </code></pre><p>Due to the informer, our controller will know that something has changed without constantly polling the KAPI.</p>
 <h4 id="reconciler-queue">Reconciler Queue<a hidden class="anchor" aria-hidden="true" href="#reconciler-queue">#</a></h4>
-<p>The queue is an internal <em>work queue</em> that holds &ldquo;reconciliation requests&rdquo; — it references to Kubernetes objects that need to be reconciled. This is a thread-safe queue for storing items (usually <code>ctrl.Requests</code>). When an event occurs (create, update, delete) that affects a watched object, the controller enqueues a request for the Reconciler to process. The Reconciler then pulls items from the queue one at a time (or in parallel) and runs the <code>Reconcile()</code> function.</p>
+<p>The queue is an internal <em>work queue</em> that holds &ldquo;reconciliation requests&rdquo; - it references to Kubernetes objects that need to be reconciled. This is a thread-safe queue for storing items (usually <code>ctrl.Requests</code>). When an event occurs (create, update, delete) that affects a watched object, the controller enqueues a request for the Reconciler to process. The Reconciler then pulls items from the queue one at a time (or in parallel) and runs the <code>Reconcile()</code> function.</p>
 <p>The Queue is:</p>
 <ul>
 <li>Event-driven: manually loop over all objects; the queue is populated by informers whenever a relevant change happens.</li>
@@ -474,16 +296,57 @@ It implements:</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ctrl</span>.<span style="color:#a6e22e">Result</span>{}, <span style="color:#66d9ef">nil</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>With this we are all set up in our journey to write our operator.</p>
+<h2 id="api-machinery">API Machinery<a hidden class="anchor" aria-hidden="true" href="#api-machinery">#</a></h2>
+<p>API Machinery is the <strong>foundation</strong> that defines <em>what</em> Kubernetes objects are and <em>how</em> they are encoded and handled. It tells Kubernetes how to understand, version, and serialize objects.</p>
+<p>This is the <strong>core library</strong> of Kubernetes - the low-level building blocks that make the Kubernetes API function.</p>
+<p>It handles all the &ldquo;API plumbing&rdquo; such as:</p>
+<ul>
+<li>Serialization and deserialization (JSON &lt;-&gt; Go structs)</li>
+<li>Type registration (<code>Scheme</code>, <code>GroupVersionKind</code>)</li>
+<li>Metadata (<code>ObjectMeta</code>, <code>TypeMeta</code>)</li>
+<li>Versioning and conversion logic</li>
+<li>Deep copying and object interfaces</li>
+<li>REST resource identification (<code>GroupVersionResource</code>, etc.)</li>
+</ul>
+<p>Outlining the main types our Operator will use</p>
+<ul>
+<li><code>TypeMeta</code> - Serialization, deserialization, API routing</li>
+<li><code>ObjectMeta</code> - Uniqueness, lifecycle, metadata tracking</li>
+<li><code>GroupVersionResource</code> - Kubernetes API resources are fully identified by a <strong>group-version-resource (GVR)</strong> triple: example - group:apps, version: v1, resource: deployment</li>
+</ul>
+<p><strong>Key packages of API Machinery:</strong></p>
+<ul>
+<li><code>runtime</code> - defines <code>runtime.Object</code>, <code>Scheme</code>, and type registration.</li>
+<li><code>schema</code> - defines <code>GroupVersion</code>, <code>GroupKind</code>, <code>GroupResource</code>, etc.</li>
+<li><code>metav1</code> - defines metadata structs like <code>ObjectMeta</code>, <code>ListMeta</code>.</li>
+<li><code>util/runtime</code>, <code>util/validation</code> - utility helpers.</li>
+<li><code>fields</code>, <code>labels</code>, etc. - for selectors.</li>
+</ul>
+<h3 id="what-is-a-schema-actually">What is a <code>Schema</code> actually?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-schema-actually">#</a></h3>
+<p>A <strong>Schema</strong> (represented by <code>runtime.Scheme</code> in Go) defines <strong>how objects of different types are recognized, versioned, and converted</strong>. It acts as a <strong>registry</strong> of all known Kubernetes types in our controller.</p>
+<p>When we register a type with a Scheme, we are actually saying:</p>
+<ul>
+<li>&ldquo;This Go struct represents a Kubernetes resource.&rdquo;</li>
+<li>&ldquo;Here&rsquo;s its group, version, and kind (GVK).&rdquo;</li>
+<li>&ldquo;Here&rsquo;s how to convert it between versions if needed.&rdquo;</li>
+</ul>
+<p>The Scheme is crucial because it allows our operator to:</p>
+<ol>
+<li>Encode and decode objects to/from JSON or YAML.</li>
+<li>Identify an object&rsquo;s type when reading from the API or cache.</li>
+<li>Support version conversions when our CRD evolves.</li>
+</ol>
+<p>Without a Scheme, our controller wouldn&rsquo;t know how to handle our custom resources properly, and most controller-runtime operations like <code>Get</code>, <code>List</code>, or <code>Create</code> would fail.</p>
 
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://theddy.dev/tags/k8s/">K8s</a></li>
-      <li><a href="https://theddy.dev/tags/kubernetes/">Kubernetes</a></li>
-      <li><a href="https://theddy.dev/tags/operator/">Operator</a></li>
-      <li><a href="https://theddy.dev/tags/controller-runtime/">Controller-Runtime</a></li>
+      <li><a href="http://localhost:1313/tags/k8s/">K8s</a></li>
+      <li><a href="http://localhost:1313/tags/kubernetes/">Kubernetes</a></li>
+      <li><a href="http://localhost:1313/tags/operator/">Operator</a></li>
+      <li><a href="http://localhost:1313/tags/controller-runtime/">Controller-Runtime</a></li>
     </ul>
   </footer>
 </article>

@@ -141,7 +141,7 @@
     </nav>
 </header>
 <main class="main"> 
-<header class="page-header">
+<header class="page-header"><div class="breadcrumbs"><a href="https://theddy.dev/">Home</a></div>
   <h1>
     Posts
   </h1>
@@ -149,18 +149,15 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Writing Your First Kubernetes Operator - The Definitions
+    <h2 class="entry-hint-parent">Demystifying Kubernetes `controller-runtime`
     </h2>
   </header>
   <div class="entry-content">
-    <p>If you’re like me and just starting your Kubernetes journey, you’ll likely need to write an Operator to manage your custom resources. Kubernetes offers several approaches to building operators, including:
-controller-runtime — a Go framework for building controllers and operators kubebuilder — a CLI tool that scaffolds an operator project using controller-runtime Controller vs Operator Controller = logic that keeps the actual state aligned with the desired state.
-Operator = a controller that manages an application like a human operator would, using Custom Resources.
-In short: Operator = Controller &#43; Custom Resource (CRD) &#43; Domain Knowledge
+    <p>If you’re like me and just starting your Kubernetes journey, you’ll likely need to write an Operator to manage your custom resources. Kubernetes offers a high-level Go framework called controller-runtime for building such operators; frameworks like Kubebuilder are built on top of it. What do I mean by custom resources? Well, anything that you would create which is not part of the Kubernetes well-known built-in resources - Pods, Deployments, ReplicaSets, etc. An example might be you adding a new custom Backup resource whose main purpose is to do a scheduled cron job to upload backups to a desired target storage solution.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-10-09 18:15:00 +0300 EEST'>October 9, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to Writing Your First Kubernetes Operator - The Definitions" href="https://theddy.dev/posts/operator-1/"></a>
+  <footer class="entry-footer"><span title='2025-10-09 18:15:00 +0300 EEST'>October 9, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;1692 words</footer>
+  <a class="entry-link" aria-label="post link to Demystifying Kubernetes `controller-runtime`" href="https://theddy.dev/posts/controller-runtime/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -174,7 +171,7 @@ Last login: Sat Apr 19 00:15:16 on ttys001 What does ttys001 even mean?
 🖥️ Terminal, Console, TTY — What’s the Difference? That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-04-23 16:28:36 +0300 EEST'>April 23, 2025</span></footer>
+  <footer class="entry-footer"><span title='2025-04-23 16:28:36 +0300 EEST'>April 23, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;989 words</footer>
   <a class="entry-link" aria-label="post link to Terminal Emulators (&#43; Ghostty Setup)" href="https://theddy.dev/posts/terminal-setup/"></a>
 </article>
     </main>
