@@ -4,7 +4,7 @@ date: 2025-09-20T12:00:00Z
 draft: false
 ---
 
-Hello! I'm Theddy, a software engineer who enjoys putting in the 10,000 hours of effort to reach a solid understanding of the technologies I work with. I am also committed to a steady growth — both to strengthen my skills and to quiet the ever-present voice of imposter syndrome. Above all, I aspire to create meaningful projects that have a real impact.
+Hello! I'm Theddy, a software engineer who enjoys putting in the 10,000 hours of effort to reach a solid understanding of the technologies I work with. I am committed to a steady growth: both to strengthen/deepen my skills and to quiet the voice of imposter syndrome (that most have). Above all, I aspire to create meaningful projects that have a real impact and help peers along the way, while enjoying the process.
 
 ---
 

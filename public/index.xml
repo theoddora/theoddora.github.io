@@ -36,36 +36,7 @@
       <link>https://theddy.dev/about/</link>
       <pubDate>Sat, 20 Sep 2025 12:00:00 +0000</pubDate>
       <guid>https://theddy.dev/about/</guid>
-      <description>&lt;p&gt;Hello! I&amp;rsquo;m Theddy, a software engineer who enjoys putting in the 10,000 hours of effort to reach a solid understanding of the technologies I work with. I am also committed to a steady growth — both to strengthen my skills and to quiet the ever-present voice of imposter syndrome. Above all, I aspire to create meaningful projects that have a real impact.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;career&#34;&gt;Career&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;SAP&lt;/strong&gt; – Sr. Software Engineer, 2025-current&lt;br&gt;
-Project &amp;ldquo;&lt;a href=&#34;https://gardener.cloud/&#34;&gt;Gardener&lt;/a&gt;&amp;rdquo; – Managed Kubernetes Service.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Uber&lt;/strong&gt; – Sr. Software Engineer, 2019-2024&lt;br&gt;
-Worked in FinTech org, primary in tax and compliance, working on services producing millions of per-trip e-receipts on a daily basis. Additionally helped to build a document generation and authoring platform providing self-serving capabilities. Utilized by 10 teams to produce 140M documents daily in production.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Accenture&lt;/strong&gt; – Software Developer, 2017-2019&lt;br&gt;
-Delivered omnichannel commerce-as-a-service solutions with Intershop platform for &amp;ldquo;de Bijenkorf&amp;rdquo; stores. Developing and maintaining basket and checkout experience.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;DeGiro&lt;/strong&gt; - Jr. Software Developer, 2016-2017&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Sofia University St. Kliment Ohridski (FMI)  - Masters - Cybersecurity: Information Security in Computer Systems and Networks&lt;/li&gt;
-&lt;li&gt;Sofia University St. Kliment Ohridski (FMI) – Bachelors - Computer Science&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;certifications&#34;&gt;Certifications&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Certified Kubernetes Administrator&lt;/strong&gt; - 2024&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Oracle Certified Associate Java SE 8 Programmer&lt;/strong&gt; - 2017&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Erasmus+: Youth Exchanges - Human Rights Project&lt;/strong&gt; - 2016&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;IT Talents Training Camp&lt;/strong&gt; - 2016&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Programming Basics&lt;/strong&gt; - 2015
-(SoftUni) Software University&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;interests--hobbies&#34;&gt;Interests &amp;amp; Hobbies&lt;/h2&gt;
-&lt;p&gt;When I&amp;rsquo;m not working, I enjoy making plans and lists, watching youtube videos, reading books, traveling and also exploring new places to eat or visit concerts of favorite artists.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Hello! I&amp;rsquo;m Theddy, a software engineer who enjoys putting in the 10,000 hours of effort to reach a solid understanding of the technologies I work with. I am committed to a steady growth: both to strengthen/deepen my skills and to quiet the voice of imposter syndrome (that most have). Above all, I aspire to create meaningful projects that have a real impact and help peers along the way, while enjoying the process.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Terminal Emulators (&#43; Ghostty Setup)</title>
