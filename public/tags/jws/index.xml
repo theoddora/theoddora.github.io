@@ -2,24 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Jws on Theddy Dev Space</title>
-    <link>http://localhost:1313/tags/jws/</link>
+    <link>https://theddy.dev/tags/jws/</link>
     <description>Recent content in Jws on Theddy Dev Space</description>
     <generator>Hugo -- 0.157.0</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Apr 2026 21:30:00 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/jws/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://theddy.dev/tags/jws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The JWT Confusion: Why You Are Probably Talking About JWS</title>
-      <link>http://localhost:1313/posts/jwt-jws/</link>
+      <link>https://theddy.dev/posts/jwt-jws/</link>
       <pubDate>Thu, 02 Apr 2026 21:30:00 +0200</pubDate>
-      <guid>http://localhost:1313/posts/jwt-jws/</guid>
+      <guid>https://theddy.dev/posts/jwt-jws/</guid>
       <description>&lt;h2 id=&#34;history&#34;&gt;History&lt;/h2&gt;
 &lt;p&gt;The JSON Object Signing and Encryption (JOSE) Working Group was formed in 2011 to standardize signing, encryption, and key representation mechanisms for JSON-based data.&lt;/p&gt;
 &lt;p&gt;This effort resulted in a family of specifications published around 2015 as RFCs:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7515&#34;&gt;JWS (RFC 7515)&lt;/a&gt; - JSON Web Signature
-&lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7516&#34;&gt;JWE (RFC 7516)&lt;/a&gt; - JSON Web Encryption
-&lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7517&#34;&gt;JWK (RFC 7517)&lt;/a&gt; - JSON Web Key
-&lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7518&#34;&gt;JWA (RFC 7518)&lt;/a&gt; - JSON Web Algorithms&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7515&#34;&gt;JWS (RFC 7515)&lt;/a&gt; - JSON Web Signature&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7516&#34;&gt;JWE (RFC 7516)&lt;/a&gt; - JSON Web Encryption&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7517&#34;&gt;JWK (RFC 7517)&lt;/a&gt; - JSON Web Key&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7518&#34;&gt;JWA (RFC 7518)&lt;/a&gt; - JSON Web Algorithms&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;This led to the creation of &lt;strong&gt;JWT (JSON Web Token)&lt;/strong&gt;, standardized as &lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7519&#34;&gt;RFC 7519&lt;/a&gt; in 2015. BTW, JWT is actually pronounced &amp;ldquo;jot&amp;rdquo;, not J-W-T.&lt;/p&gt;</description>
     </item>
   </channel>

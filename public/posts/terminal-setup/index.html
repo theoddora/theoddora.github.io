@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Terminal Emulators (&#43; Ghostty Setup) | Theddy Dev Space</title>
 <meta name="keywords" content="terminal, linux, console, unix, shell">
 <meta name="description" content="Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:
@@ -14,16 +14,16 @@ What does ttys001 even mean?
 🖥️ Terminal, Console, TTY — What&rsquo;s the Difference?
 That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:">
 <meta name="author" content="theddy">
-<link rel="canonical" href="http://localhost:1313/posts/terminal-setup/">
+<link rel="canonical" href="https://theddy.dev/posts/terminal-setup/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://theddy.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://theddy.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://theddy.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://theddy.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://theddy.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/terminal-setup/">
+<link rel="alternate" hreflang="en" href="https://theddy.dev/posts/terminal-setup/">
 <noscript>
     <style>
         #theme-toggle,
@@ -60,7 +60,85 @@ That question led me to explore how terminals actually work. I had always used t
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://theddy.dev/posts/terminal-setup/">
+  <meta property="og:site_name" content="Theddy Dev Space">
+  <meta property="og:title" content="Terminal Emulators (&#43; Ghostty Setup)">
+  <meta property="og:description" content="Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:
+Last login: Sat Apr 19 00:15:16 on ttys001 What does ttys001 even mean?
+🖥️ Terminal, Console, TTY — What’s the Difference? That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-23T16:28:36+03:00">
+    <meta property="article:modified_time" content="2025-04-23T16:28:36+03:00">
+    <meta property="article:tag" content="Terminal">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Console">
+    <meta property="article:tag" content="Unix">
+    <meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Terminal Emulators (&#43; Ghostty Setup)">
+<meta name="twitter:description" content="Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:
+Last login: Sat Apr 19 00:15:16 on ttys001
+What does ttys001 even mean?
+
+🖥️ Terminal, Console, TTY — What&rsquo;s the Difference?
+That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://theddy.dev/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Terminal Emulators (+ Ghostty Setup)",
+      "item": "https://theddy.dev/posts/terminal-setup/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Terminal Emulators (+ Ghostty Setup)",
+  "name": "Terminal Emulators (\u002b Ghostty Setup)",
+  "description": "Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:\nLast login: Sat Apr 19 00:15:16 on ttys001 What does ttys001 even mean?\n🖥️ Terminal, Console, TTY — What\u0026rsquo;s the Difference? That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:\n",
+  "keywords": [
+    "terminal", "linux", "console", "unix", "shell"
+  ],
+  "articleBody": "Lately, I’ve been filling in some of the gaps in my software engineering knowledge. One random question that I had was this little message in my Terminal:\nLast login: Sat Apr 19 00:15:16 on ttys001 What does ttys001 even mean?\n🖥️ Terminal, Console, TTY — What’s the Difference? That question led me to explore how terminals actually work. I had always used the default Terminal app on macOS without giving it much thought. Now I know that on modern-day computers, we usually use the word terminal to refer to software programs known as terminal emulators:\nShell: A shell is a program that acts as a command-line interface etween you and the operating system. Shells are applications that use the kernel API in just the same way as it is used by other application programs. A shell manages the user–system interaction by prompting users for input, interpreting their input, and then handling output from the underlying operating system. Terminal: Originally, a physical device that was connected to a computer to give access to a shell. In those days, you would have a large mainframe computer with many “dumb terminals” connected to it - they had no computing abilities themselves, they just sent keystrokes to the mainframe and displayed the text that was returned. These days, “terminal” usually refers to a terminal emulator program, which provides the window that displays the shell and allows you to interact with it. Console: The physical device or main terminal (originally tied to mainframes). A console is a special kind of terminal that is directly connected to the mainframe and used for maintenance tasks. TTY: A legacy term and acronym for the Teletypewriter device that still shows up in Unix systems to refer to terminal devices. In the Linux world, tty refers to an interface that enables access to the terminal. Command Line: A terminal is not a command prompt, though the two are somewhat similar. In Mac OS, the command prompt is even called Terminal. //===========================\\\\ || Terminal || || |-----------| || || Keyboard---\u003e| Input |-++-\u003e|---| |-------| || |-----------| || |tty|\u003c=\u003e| shell | || |---------|\u003c------++--|---| |-------| || Print\u003c--| Output | || || |---------| || || || \\\\===========================// Source: Reddit\nEnter: Ghostty After browsing terminal emulators available in 2025, I decided to switch to Ghostty. I checked out other great ones like Kitty, wezterm, and alacritty. I also looked into Warp, but requiring a login to collect telemetry made it a no-go for me.\nI chose Ghostty because:\nIt’s fast — significantly faster than the stock Terminal app (some benchmarks say 10x faster). It’s standards-compliant. It has a bunch of quality-of-life features, like themes, tab/split management, and Kitty graphics protocol support. I’m still new to terminal emulators, so honestly, any of the modern ones would’ve blown my mind. But the Ghostty experience, especially how easy it is to apply pretty themes, see the terminal inspector - won me. Other features I am now using are windows, tabs, and splits, whereas I used to go have different tabs only. Also the Kitty graphics protocol.\nMy Ghostty Config shell-integration-features = no-cursor, sudo cursor-style = block cursor-color = #f5e0dc cursor-text = #cdd6f4 cursor-opacity = 0.75 adjust-cell-height = 15% quick-terminal-position = left clipboard-read = allow clipboard-write = allow copy-on-select = clipboard theme = Catppuccin Mocha bold-is-bright = true background = #1e1e2e foreground = #cdd6f4 selection-background = #585b70 selection-foreground = #cdd6f4 font-size = 14.5 font-family = SFMono Nerd Font window-save-state = always window-padding-balance = true # Tab switch keybind = cmd+s\u003e1=goto_tab:1 keybind = cmd+s\u003e2=goto_tab:2 keybind = cmd+s\u003e3=goto_tab:3 keybind = cmd+s\u003e4=goto_tab:4 keybind = cmd+s\u003e5=goto_tab:5 keybind = cmd+s\u003e6=goto_tab:6 keybind = cmd+s\u003e7=goto_tab:7 keybind = cmd+s\u003e8=goto_tab:8 keybind = cmd+s\u003e9=goto_tab:9 Fonts ls ~/Library/Fonts # Output SFMono Bold Italic Nerd Font Complete SFMono Bold Nerd Font Complete SFMono Heavy Italic Nerd Font Complete SFMono Heavy Nerd Font Complete SFMono Light Italic Nerd Font Complete SFMono Light Nerd Font Complete SFMono Medium Italic Nerd Font Complete SFMono Medium Nerd Font Complete SFMono Regular Italic Nerd Font Complete SFMono Regular Nerd Font Complete SFMono Semibold Italic Nerd Font Complete SFMono Semibold Nerd Font Complete ✨ My Shell Config (with Starship) I use Starship for my prompt and my shell is zsh:\n# Wait 15 sec for starship to check files under the current working directory scan_timeout = 15 # Disable the blank line at the start of the prompt add_newline = false [line_break] disabled = false [time] disabled = false format = \"[$time]($style) \" time_format = \"[%T]\" # This gives you HH:MM:SS (24-hour format) # style = \"bold yellow\" style = \"#939594\" # Replace the \"❯\" symbol in the prompt with \"➜\" [character] # The \"success_symbol\" segment is being set to \"➜\" with the color \"bold green\" # use_symbol_for_status = true success_symbol = \"[➜](bold green)\" error_symbol = \"[✖](bold red)\" [username] format = \" [╭─$user]($style)@\" style_user = \"bold red\" style_root = \"bold red\" show_always = false [hostname] format = \"[$hostname]($style) in \" style = \"bold dimmed red\" trim_at = \"-\" ssh_only = false disabled = true [directory] style = \"purple\" truncation_length = 8 truncate_to_repo = false truncation_symbol = \"repo: \" [git_status] style = \"white\" ahead = \"⇡${count}\" diverged = \"⇕⇡${ahead_count}⇣${behind_count}\" behind = \"⇣${count}\" deleted = \"x\" staged = \"[+](green)\" untracked = \"[?](red)\" modified = \"[*](yellow)\" [cmd_duration] min_time = 1 format = \"took [$duration]($style)\" disabled = true [aws] symbol = \"\\uE32D \" # requires Nerd Font, AWS icon [gcloud] disabled = true [git_branch] symbol = \"\\uF418 \" # requires Nerd Font, Git branch [golang] symbol = \"\\uE627 \" # requires Nerd Font, Go icon format = \"via [$symbol ($version) ]($style)\" [memory_usage] symbol = \"\\uF85A \" # requires Nerd Font, Memory [docker_context] symbol = \"\\uF308 \" # requires Nerd Font, Docker style = \"bg:#06969A\" format = '[ $symbol $context ]($style)$path' [git_commit] disabled = false commit_hash_length = 8 [kubernetes] format = '[⛵ ($cluster) \\($namespace\\)](bold green) ' disabled = false [package] symbol = \"\\uF896\" # requires Nerd Font, Package Useful Reads Serial Terminal Basics Baeldung A Guide to the Terminal, Console, and Shell ",
+  "wordCount" : "989",
+  "inLanguage": "en",
+  "datePublished": "2025-04-23T16:28:36+03:00",
+  "dateModified": "2025-04-23T16:28:36+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "theddy"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://theddy.dev/posts/terminal-setup/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Theddy Dev Space",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://theddy.dev/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -78,7 +156,7 @@ That question led me to explore how terminals actually work. I had always used t
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
+            <a href="https://theddy.dev/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -104,17 +182,17 @@ That question led me to explore how terminals actually work. I had always used t
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Theddy Dev Space">
+                <a href="https://theddy.dev/" title="Theddy Dev Space">
                     <span>home</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="tags">
+                <a href="https://theddy.dev/tags/" title="tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="about">
+                <a href="https://theddy.dev/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
@@ -125,7 +203,7 @@ That question led me to explore how terminals actually work. I had always used t
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="https://theddy.dev/">Home</a>&nbsp;»&nbsp;<a href="https://theddy.dev/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       Terminal Emulators (&#43; Ghostty Setup)
     </h1>
@@ -342,11 +420,11 @@ That question led me to explore how terminals actually work. I had always used t
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/terminal/">Terminal</a></li>
-      <li><a href="http://localhost:1313/tags/linux/">Linux</a></li>
-      <li><a href="http://localhost:1313/tags/console/">Console</a></li>
-      <li><a href="http://localhost:1313/tags/unix/">Unix</a></li>
-      <li><a href="http://localhost:1313/tags/shell/">Shell</a></li>
+      <li><a href="https://theddy.dev/tags/terminal/">Terminal</a></li>
+      <li><a href="https://theddy.dev/tags/linux/">Linux</a></li>
+      <li><a href="https://theddy.dev/tags/console/">Console</a></li>
+      <li><a href="https://theddy.dev/tags/unix/">Unix</a></li>
+      <li><a href="https://theddy.dev/tags/shell/">Shell</a></li>
     </ul>
   </footer>
 </article>

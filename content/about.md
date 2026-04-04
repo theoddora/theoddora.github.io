@@ -4,7 +4,7 @@ date: 2025-09-20T12:00:00Z
 draft: false
 ---
 
-Hello! I'm Theodora, a software engineer who enjoys honing her craft and putting in the 10,000 hours to reach a solid understanding. I aim to build projects that make a difference. I enjoy digging under abstractions to understand how and why things truly work.
+Hello! I'm Theddy, a software engineer who enjoys putting in the 10,000 hours of effort to reach a solid understanding of the technologies I work with. I am also committed to a steady growth — both to strengthen my skills and to quiet the ever-present voice of imposter syndrome. Above all, I aspire to create meaningful projects that have a real impact.
 
 ---
 
@@ -22,11 +22,12 @@ Hello! I'm Theodora, a software engineer who enjoys honing her craft and putting
 
 ## Education
 
-- Sofia University St. Kliment Ohridski (FMI) – (applying for) Masters
-- Sofia University St. Kliment Ohridski (FMI) – Bachelors in Computer Science
+- Sofia University St. Kliment Ohridski (FMI)  - Masters - Cybersecurity: Information Security in Computer Systems and Networks 
+- Sofia University St. Kliment Ohridski (FMI) – Bachelors - Computer Science
 
 ## Certifications
 
+- **Certified Kubernetes Administrator** - 2024
 - **Oracle Certified Associate Java SE 8 Programmer** - 2017
 - **Erasmus+: Youth Exchanges - Human Rights Project** - 2016
 - **IT Talents Training Camp** - 2016
@@ -37,4 +38,4 @@ Hello! I'm Theodora, a software engineer who enjoys honing her craft and putting
 
 ## Interests & Hobbies
 
-When I'm not working, I enjoy running, reading books, and exploring new places to eat or visit concerts of favorite artists.
+When I'm not working, I enjoy making plans and lists, watching youtube videos, reading books, traveling and also exploring new places to eat or visit concerts of favorite artists.

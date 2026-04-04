@@ -2,69 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/jwa/</loc>
+    <loc>https://theddy.dev/tags/jwa/</loc>
     <lastmod>2026-04-02T21:30:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/jwe/</loc>
+    <loc>https://theddy.dev/tags/jwe/</loc>
     <lastmod>2026-04-02T21:30:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/jwk/</loc>
+    <loc>https://theddy.dev/tags/jwk/</loc>
     <lastmod>2026-04-02T21:30:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/jws/</loc>
+    <loc>https://theddy.dev/tags/jws/</loc>
     <lastmod>2026-04-02T21:30:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/jwt/</loc>
+    <loc>https://theddy.dev/tags/jwt/</loc>
     <lastmod>2026-04-02T21:30:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://theddy.dev/posts/</loc>
     <lastmod>2026-04-02T21:30:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://theddy.dev/tags/</loc>
     <lastmod>2026-04-02T21:30:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/jwt-jws/</loc>
+    <loc>https://theddy.dev/posts/jwt-jws/</loc>
     <lastmod>2026-04-02T21:30:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://theddy.dev/</loc>
     <lastmod>2026-04-02T21:30:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/controller-runtime/</loc>
+    <loc>https://theddy.dev/tags/controller-runtime/</loc>
     <lastmod>2025-10-09T18:15:00+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/controller-runtime/</loc>
+    <loc>https://theddy.dev/posts/controller-runtime/</loc>
     <lastmod>2025-10-09T18:15:00+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/k8s/</loc>
+    <loc>https://theddy.dev/tags/k8s/</loc>
     <lastmod>2025-10-09T18:15:00+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/kubernetes/</loc>
+    <loc>https://theddy.dev/tags/kubernetes/</loc>
     <lastmod>2025-10-09T18:15:00+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/operator/</loc>
+    <loc>https://theddy.dev/tags/operator/</loc>
     <lastmod>2025-10-09T18:15:00+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://theddy.dev/about/</loc>
     <lastmod>2025-09-20T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/console/</loc>
+    <loc>https://theddy.dev/tags/console/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/linux/</loc>
+    <loc>https://theddy.dev/tags/linux/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/shell/</loc>
+    <loc>https://theddy.dev/tags/shell/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/terminal/</loc>
+    <loc>https://theddy.dev/tags/terminal/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/terminal-setup/</loc>
+    <loc>https://theddy.dev/posts/terminal-setup/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/unix/</loc>
+    <loc>https://theddy.dev/tags/unix/</loc>
     <lastmod>2025-04-23T16:28:36+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://theddy.dev/categories/</loc>
   </url>
 </urlset>

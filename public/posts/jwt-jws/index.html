@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>The JWT Confusion: Why You Are Probably Talking About JWS | Theddy Dev Space</title>
 <meta name="keywords" content="jwt, jws, jwe, jwk, jwa">
 <meta name="description" content="History
@@ -18,16 +18,16 @@ JWA (RFC 7518) - JSON Web Algorithms
 
 This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 2015. BTW, JWT is actually pronounced &ldquo;jot&rdquo;, not J-W-T.">
 <meta name="author" content="theddy">
-<link rel="canonical" href="http://localhost:1313/posts/jwt-jws/">
+<link rel="canonical" href="https://theddy.dev/posts/jwt-jws/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://theddy.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://theddy.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://theddy.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://theddy.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://theddy.dev/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/jwt-jws/">
+<link rel="alternate" hreflang="en" href="https://theddy.dev/posts/jwt-jws/">
 <noscript>
     <style>
         #theme-toggle,
@@ -64,7 +64,89 @@ This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 20
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://theddy.dev/posts/jwt-jws/">
+  <meta property="og:site_name" content="Theddy Dev Space">
+  <meta property="og:title" content="The JWT Confusion: Why You Are Probably Talking About JWS">
+  <meta property="og:description" content="History The JSON Object Signing and Encryption (JOSE) Working Group was formed in 2011 to standardize signing, encryption, and key representation mechanisms for JSON-based data.
+This effort resulted in a family of specifications published around 2015 as RFCs:
+JWS (RFC 7515) - JSON Web Signature JWE (RFC 7516) - JSON Web Encryption JWK (RFC 7517) - JSON Web Key JWA (RFC 7518) - JSON Web Algorithms This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 2015. BTW, JWT is actually pronounced “jot”, not J-W-T.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-02T21:30:00+02:00">
+    <meta property="article:modified_time" content="2026-04-02T21:30:00+02:00">
+    <meta property="article:tag" content="Jwt">
+    <meta property="article:tag" content="Jws">
+    <meta property="article:tag" content="Jwe">
+    <meta property="article:tag" content="Jwk">
+    <meta property="article:tag" content="Jwa">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The JWT Confusion: Why You Are Probably Talking About JWS">
+<meta name="twitter:description" content="History
+The JSON Object Signing and Encryption (JOSE) Working Group was formed in 2011 to standardize signing, encryption, and key representation mechanisms for JSON-based data.
+This effort resulted in a family of specifications published around 2015 as RFCs:
+
+JWS (RFC 7515) - JSON Web Signature
+JWE (RFC 7516) - JSON Web Encryption
+JWK (RFC 7517) - JSON Web Key
+JWA (RFC 7518) - JSON Web Algorithms
+
+This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 2015. BTW, JWT is actually pronounced &ldquo;jot&rdquo;, not J-W-T.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://theddy.dev/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "The JWT Confusion: Why You Are Probably Talking About JWS",
+      "item": "https://theddy.dev/posts/jwt-jws/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The JWT Confusion: Why You Are Probably Talking About JWS",
+  "name": "The JWT Confusion: Why You Are Probably Talking About JWS",
+  "description": "History The JSON Object Signing and Encryption (JOSE) Working Group was formed in 2011 to standardize signing, encryption, and key representation mechanisms for JSON-based data.\nThis effort resulted in a family of specifications published around 2015 as RFCs:\nJWS (RFC 7515) - JSON Web Signature JWE (RFC 7516) - JSON Web Encryption JWK (RFC 7517) - JSON Web Key JWA (RFC 7518) - JSON Web Algorithms This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 2015. BTW, JWT is actually pronounced \u0026ldquo;jot\u0026rdquo;, not J-W-T.\n",
+  "keywords": [
+    "jwt", "jws", "jwe", "jwk", "jwa"
+  ],
+  "articleBody": "History The JSON Object Signing and Encryption (JOSE) Working Group was formed in 2011 to standardize signing, encryption, and key representation mechanisms for JSON-based data.\nThis effort resulted in a family of specifications published around 2015 as RFCs:\nJWS (RFC 7515) - JSON Web Signature JWE (RFC 7516) - JSON Web Encryption JWK (RFC 7517) - JSON Web Key JWA (RFC 7518) - JSON Web Algorithms This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 2015. BTW, JWT is actually pronounced “jot”, not J-W-T.\nThe JWT Family The JOSE - JSON Object Signing and Encryption, provide IETF standards designed to securely transfer claims between parties. JOSE defines the building blocks: - JWS - signed messages - JWE - encrypted messages - JWK - keys to use - JWA - allowed algorithms JWT is built on top of JOSE standards. It uses JWS and JWE.\nGlossary JWS - JSON Web Signatures, which provide compact serialization. This looks like a string in three parts separated with dots.\nbase64url( Header ). base64url( Payload ). base64url( Signature ) The signature is created by cryptographically signing the base64url-encoded header and payload using a key (either symmetric or asymmetric). Signatures provides integrity/tamper resistance.\nJWE - JSON Web Encryption, a string in five parts separated with dots.\nbase64url( Header ). base64url( Encrypted Key ). base64url( InitializationVector ). base64url( Ciphertext ). base64url( AuthenticationTag ) Those provide confidentiality, ensuring only intended recipients can read it.\nJWA - JSON Web Algorithms - provide information on which algorithms to use for “sealing” the payloads. JWK - JSON Web Key - represent keys as JSON objects.\n{ \"keys\": [ { \"kty\": \"RSA\", \"use\": \"sig\", \"n\": \"sySYvu...\", \"e\": \"AQAB\", \"kid\": \"MDc...\", }, { \"kty\": \"RSA\", \"use\": \"sig\", Those JSON specs describe the key with different fields - kty (key type), use (public key use), kid (key id).\nJWKS - JSON Web Key Set. Standard way to wrap multiple JWKs into one JSON object. It is a JSON object with a keys member.\nJWT - JSON Web Token - standartized compact representation of information using claims.\nWhat is JWT A JSON Web Token looks like this:\neyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9. eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9. MzXXc7P0HPPzPLlXY21kGLBKTdYzq3bdhz76hn8fBYk This is a compact, printable representation of a series of claims, along with a signature to verify its authenticity.\nMeaning:\nHeader: { \"alg\": \"HS256\", \"typ\": \"JWT\" } Payload: { \"sub\": \"1234567890\", \"name\": \"John Doe\", \"admin\": true } JWT must always use compact serialization. JWT is a type of token which is a structure token. Again, it is a format for representation of information in the form of claims.\nSome of JWT’s applications include:\nAuthentication Authorization Federated identity Client-side sessions (“stateless” sessions) Client-side secrets JWT Claims JWT (“jot”) is a set of claims. Claims are definitions about a certain party or object.\nSome are part of the spec and other are user defined. Spec:\niss (issuer) - Principal who issued the JWT. Its interpretation is application specific (there is no central authority managing issuers). sub (subject) - Subject of the JWT (the user). It uniquely identifies the party that this JWT carries information about aud (audience) - recipients for which the JWT is intended. Array of strings that uniquely identify the intended recipients of this JWT. In other words, when this claim is present, the party reading the data in this JWT must find itself in the aud claim or disregard the data contained in the JWT. exp (expiration time) - Time after which the JWT expires. A number representing a specific date and time in the format “seconds since epoch”. nbf (not before) - The token is valid after this timestamp. iat (issued at) - Time when the token was issued. jti (JTW ID) - Unique ID for this JWT. JWS When a JWT is signed, it is represented as a JWS. The signature is part of the JWS structure. The signature is the third element. This element appears after the last dot (.) in the compact serialization form. It provides the data integrity.\nJWT vs JWS Are they the same?\nJWT is a set of claims (the payload). A JWS is a way to protect that payload using a digital signature. For JWT to be used, it must be transmitted securely. A JWT is encoded as a JWS when it is signed.\nConclusion JWT and JWS are closely related. A JWT defines what is being transmitted - a set of claims. Whereas a JWS defines how those claims are protected - through a digital signature.\nJWT term is often used interchangeable as JWS and this is considered correct. Most of the time, when people say “JWT”, they actually mean a signed JWS - and knowing that difference matters.\nRefs https://www.jwt.io/ https://datatracker.ietf.org/wg/jose/history/ https://datatracker.ietf.org/doc/html/rfc7515 https://auth0.com/blog/demystifying-jose-jwt-family/ “The JWT Handbook” by Sebastián E. Peyrott\n",
+  "wordCount" : "792",
+  "inLanguage": "en",
+  "datePublished": "2026-04-02T21:30:00+02:00",
+  "dateModified": "2026-04-02T21:30:00+02:00",
+  "author":{
+    "@type": "Person",
+    "name": "theddy"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://theddy.dev/posts/jwt-jws/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Theddy Dev Space",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://theddy.dev/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -82,7 +164,7 @@ This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 20
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
+            <a href="https://theddy.dev/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -108,17 +190,17 @@ This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 20
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Theddy Dev Space">
+                <a href="https://theddy.dev/" title="Theddy Dev Space">
                     <span>home</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="tags">
+                <a href="https://theddy.dev/tags/" title="tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="about">
+                <a href="https://theddy.dev/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
@@ -129,7 +211,7 @@ This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 20
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="https://theddy.dev/">Home</a>&nbsp;»&nbsp;<a href="https://theddy.dev/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       The JWT Confusion: Why You Are Probably Talking About JWS
     </h1>
@@ -259,11 +341,11 @@ MzXXc7P0HPPzPLlXY21kGLBKTdYzq3bdhz76hn8fBYk
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/jwt/">Jwt</a></li>
-      <li><a href="http://localhost:1313/tags/jws/">Jws</a></li>
-      <li><a href="http://localhost:1313/tags/jwe/">Jwe</a></li>
-      <li><a href="http://localhost:1313/tags/jwk/">Jwk</a></li>
-      <li><a href="http://localhost:1313/tags/jwa/">Jwa</a></li>
+      <li><a href="https://theddy.dev/tags/jwt/">Jwt</a></li>
+      <li><a href="https://theddy.dev/tags/jws/">Jws</a></li>
+      <li><a href="https://theddy.dev/tags/jwe/">Jwe</a></li>
+      <li><a href="https://theddy.dev/tags/jwk/">Jwk</a></li>
+      <li><a href="https://theddy.dev/tags/jwa/">Jwa</a></li>
     </ul>
   </footer>
 </article>
