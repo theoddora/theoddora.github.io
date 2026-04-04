@@ -26,6 +26,7 @@ params:
   ShowBreadCrumbs: true
   ShowWordCount: true
   UseHugoToc: true
+  author: theddy
 
 markup:
   tableOfContents:

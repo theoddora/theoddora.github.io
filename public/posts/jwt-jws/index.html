@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>The JWT Confusion: Why You Are Probably Talking About JWS | Theddy Dev Space</title>
+<meta name="keywords" content="jwt, jws, jwe, jwk, jwa">
+<meta name="description" content="History
+The JSON Object Signing and Encryption (JOSE) Working Group was formed in 2011 to standardize signing, encryption, and key representation mechanisms for JSON-based data.
+This effort resulted in a family of specifications published around 2015 as RFCs:
+
+JWS (RFC 7515) - JSON Web Signature
+JWE (RFC 7516) - JSON Web Encryption
+JWK (RFC 7517) - JSON Web Key
+JWA (RFC 7518) - JSON Web Algorithms
+
+This led to the creation of JWT (JSON Web Token), standardized as RFC 7519 in 2015. BTW, JWT is actually pronounced &ldquo;jot&rdquo;, not J-W-T.">
+<meta name="author" content="theddy">
+<link rel="canonical" href="http://localhost:1313/posts/jwt-jws/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/jwt-jws/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Theddy Dev Space">
+                    <span>home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      The JWT Confusion: Why You Are Probably Talking About JWS
+    </h1>
+    <div class="post-meta"><span title='2026-04-02 21:30:00 +0200 +0200'>April 2, 2026</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;792 words&nbsp;·&nbsp;theddy
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#history">History</a></li>
+    <li><a href="#the-jwt-family">The JWT Family</a></li>
+    <li><a href="#glossary">Glossary</a></li>
+    <li><a href="#what-is-jwt">What is JWT</a></li>
+    <li><a href="#jwt-claims">JWT Claims</a></li>
+    <li><a href="#jws">JWS</a></li>
+    <li><a href="#jwt-vs-jws">JWT vs JWS</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#refs">Refs</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="history">History<a hidden class="anchor" aria-hidden="true" href="#history">#</a></h2>
+<p>The JSON Object Signing and Encryption (JOSE) Working Group was formed in 2011 to standardize signing, encryption, and key representation mechanisms for JSON-based data.</p>
+<p>This effort resulted in a family of specifications published around 2015 as RFCs:</p>
+<ol>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7515">JWS (RFC 7515)</a> - JSON Web Signature</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7516">JWE (RFC 7516)</a> - JSON Web Encryption</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7517">JWK (RFC 7517)</a> - JSON Web Key</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7518">JWA (RFC 7518)</a> - JSON Web Algorithms</li>
+</ol>
+<p>This led to the creation of <strong>JWT (JSON Web Token)</strong>, standardized as <a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519</a> in 2015. BTW, JWT is actually pronounced &ldquo;jot&rdquo;, not J-W-T.</p>
+<h2 id="the-jwt-family">The JWT Family<a hidden class="anchor" aria-hidden="true" href="#the-jwt-family">#</a></h2>
+<p>The JOSE - JSON Object Signing and Encryption, provide IETF standards designed to securely transfer claims between parties. JOSE defines the building blocks:
+- JWS - signed messages
+- JWE - encrypted messages
+- JWK - keys to use
+- JWA - allowed algorithms
+JWT is built <em>on top of</em> JOSE standards. It uses JWS and JWE.</p>
+<h2 id="glossary">Glossary<a hidden class="anchor" aria-hidden="true" href="#glossary">#</a></h2>
+<p>JWS - <code>JSON Web Signatures</code>, which provide compact serialization. This looks like a string in three parts separated with dots.</p>
+<pre tabindex="0"><code>base64url( Header ). base64url( Payload ). base64url( Signature )
+</code></pre><p>The signature is created by cryptographically signing the base64url-encoded header and payload using a key (either symmetric or asymmetric). Signatures provides <strong>integrity</strong>/tamper resistance.</p>
+<p>JWE - <code>JSON Web Encryption</code>, a string in five parts separated with dots.</p>
+<pre tabindex="0"><code>base64url( Header ). base64url( Encrypted Key ). base64url( InitializationVector ). base64url( Ciphertext ). base64url( AuthenticationTag )
+</code></pre><p>Those provide <strong>confidentiality</strong>, ensuring only intended recipients can read it.</p>
+<p>JWA - <code>JSON Web Algorithms</code> - provide information on which algorithms to use for &ldquo;sealing&rdquo; the payloads.
+JWK - <code>JSON Web Key</code> - represent keys as JSON objects.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;keys&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;kty&#34;</span>: <span style="color:#e6db74">&#34;RSA&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;use&#34;</span>: <span style="color:#e6db74">&#34;sig&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;n&#34;</span>: <span style="color:#e6db74">&#34;sySYvu...&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;e&#34;</span>: <span style="color:#e6db74">&#34;AQAB&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;kid&#34;</span>: <span style="color:#e6db74">&#34;MDc...&#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;kty&#34;</span>: <span style="color:#e6db74">&#34;RSA&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;use&#34;</span>: <span style="color:#e6db74">&#34;sig&#34;</span>,
+</span></span></code></pre></div><p>Those JSON specs describe the key with different fields - kty (key type), use (public key use), kid (key id).</p>
+<p>JWKS - <code>JSON Web Key Set</code>. Standard way to wrap multiple JWKs into one JSON object. It is a JSON object with a keys member.</p>
+<p>JWT - <code>JSON Web Token</code> - standartized compact representation of information using claims.</p>
+<h2 id="what-is-jwt">What is JWT<a hidden class="anchor" aria-hidden="true" href="#what-is-jwt">#</a></h2>
+<p>A JSON Web Token looks like this:</p>
+<pre tabindex="0"><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
+MzXXc7P0HPPzPLlXY21kGLBKTdYzq3bdhz76hn8fBYk
+</code></pre><p>This is a compact, printable representation of a series of claims, along with a signature to verify its authenticity.</p>
+<p>Meaning:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Header:</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Payload:</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;admin&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>JWT must always use compact serialization. JWT is a type of token which is a structure token. Again, it is a format for representation of information in the form of claims.</p>
+<p>Some of JWT&rsquo;s applications include:</p>
+<ul>
+<li>Authentication</li>
+<li>Authorization</li>
+<li>Federated identity</li>
+<li>Client-side sessions (&ldquo;stateless&rdquo; sessions)</li>
+<li>Client-side secrets</li>
+</ul>
+<h2 id="jwt-claims">JWT Claims<a hidden class="anchor" aria-hidden="true" href="#jwt-claims">#</a></h2>
+<p>JWT (&ldquo;jot&rdquo;) is a set of claims. Claims are definitions about a certain party or object.</p>
+<p>Some are part of the spec and other are user defined. Spec:</p>
+<ul>
+<li>iss (issuer) - Principal who issued the JWT. Its interpretation is application specific (there is no central authority managing issuers).</li>
+<li>sub (subject) - Subject of the JWT (the user). It uniquely identifies the party that this JWT carries information about</li>
+<li>aud (audience) - recipients for which the JWT is intended. Array of strings that uniquely identify the intended recipients of this JWT. In other words, when this claim is present, the party reading the data in this JWT must find itself in the aud claim or disregard the data contained in the JWT.</li>
+<li>exp (expiration time) - Time after which the JWT expires. A number representing a specific date and time in the format &ldquo;seconds since epoch&rdquo;.</li>
+<li>nbf (not before) - The token is valid after this timestamp.</li>
+<li>iat (issued at) - Time when the token was issued.</li>
+<li>jti (JTW ID) - Unique ID for this JWT.</li>
+</ul>
+<h2 id="jws">JWS<a hidden class="anchor" aria-hidden="true" href="#jws">#</a></h2>
+<p>When a JWT is signed, it is represented as a JWS. The signature is part of the JWS structure. The signature is the third element. This element appears after the last dot (.) in the compact serialization form. It provides the data integrity.</p>
+<h2 id="jwt-vs-jws">JWT vs JWS<a hidden class="anchor" aria-hidden="true" href="#jwt-vs-jws">#</a></h2>
+<p>Are they the same?</p>
+<p>JWT is a set of claims (the payload). A JWS is a way to protect that payload using a digital signature. For JWT to be used, it must be transmitted securely. A JWT is encoded as a JWS when it is signed.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>JWT and JWS are closely related. A JWT defines what is being transmitted - a set of claims. Whereas a JWS defines how those claims are protected - through a digital signature.</p>
+<p>JWT term is often used interchangeable as JWS and this is considered correct. Most of the time, when people say &ldquo;JWT&rdquo;, they actually mean a signed JWS - and knowing that difference matters.</p>
+<h2 id="refs">Refs<a hidden class="anchor" aria-hidden="true" href="#refs">#</a></h2>
+<p><a href="https://www.jwt.io/">https://www.jwt.io/</a>
+<a href="https://datatracker.ietf.org/wg/jose/history/">https://datatracker.ietf.org/wg/jose/history/</a>
+<a href="https://datatracker.ietf.org/doc/html/rfc7515">https://datatracker.ietf.org/doc/html/rfc7515</a>
+<a href="https://auth0.com/blog/demystifying-jose-jwt-family/">https://auth0.com/blog/demystifying-jose-jwt-family/</a>
+&ldquo;The JWT Handbook&rdquo; by Sebastián E. Peyrott</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/jwt/">Jwt</a></li>
+      <li><a href="http://localhost:1313/tags/jws/">Jws</a></li>
+      <li><a href="http://localhost:1313/tags/jwe/">Jwe</a></li>
+      <li><a href="http://localhost:1313/tags/jwk/">Jwk</a></li>
+      <li><a href="http://localhost:1313/tags/jwa/">Jwa</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -2,73 +2,108 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Theddy Dev Space</title>
-    <link>https://theddy.dev/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Theddy Dev Space</description>
-    <generator>Hugo -- 0.151.0</generator>
+    <generator>Hugo -- 0.157.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Oct 2025 18:15:00 +0300</lastBuildDate>
-    <atom:link href="https://theddy.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Apr 2026 21:30:00 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jwa</title>
+      <link>http://localhost:1313/tags/jwa/</link>
+      <pubDate>Thu, 02 Apr 2026 21:30:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/jwa/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jwe</title>
+      <link>http://localhost:1313/tags/jwe/</link>
+      <pubDate>Thu, 02 Apr 2026 21:30:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/jwe/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jwk</title>
+      <link>http://localhost:1313/tags/jwk/</link>
+      <pubDate>Thu, 02 Apr 2026 21:30:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/jwk/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jws</title>
+      <link>http://localhost:1313/tags/jws/</link>
+      <pubDate>Thu, 02 Apr 2026 21:30:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/jws/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jwt</title>
+      <link>http://localhost:1313/tags/jwt/</link>
+      <pubDate>Thu, 02 Apr 2026 21:30:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/jwt/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Controller-Runtime</title>
-      <link>https://theddy.dev/tags/controller-runtime/</link>
+      <link>http://localhost:1313/tags/controller-runtime/</link>
       <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
-      <guid>https://theddy.dev/tags/controller-runtime/</guid>
+      <guid>http://localhost:1313/tags/controller-runtime/</guid>
       <description></description>
     </item>
     <item>
       <title>K8s</title>
-      <link>https://theddy.dev/tags/k8s/</link>
+      <link>http://localhost:1313/tags/k8s/</link>
       <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
-      <guid>https://theddy.dev/tags/k8s/</guid>
+      <guid>http://localhost:1313/tags/k8s/</guid>
       <description></description>
     </item>
     <item>
       <title>Kubernetes</title>
-      <link>https://theddy.dev/tags/kubernetes/</link>
+      <link>http://localhost:1313/tags/kubernetes/</link>
       <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
-      <guid>https://theddy.dev/tags/kubernetes/</guid>
+      <guid>http://localhost:1313/tags/kubernetes/</guid>
       <description></description>
     </item>
     <item>
       <title>Operator</title>
-      <link>https://theddy.dev/tags/operator/</link>
+      <link>http://localhost:1313/tags/operator/</link>
       <pubDate>Thu, 09 Oct 2025 18:15:00 +0300</pubDate>
-      <guid>https://theddy.dev/tags/operator/</guid>
+      <guid>http://localhost:1313/tags/operator/</guid>
       <description></description>
     </item>
     <item>
       <title>Console</title>
-      <link>https://theddy.dev/tags/console/</link>
+      <link>http://localhost:1313/tags/console/</link>
       <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
-      <guid>https://theddy.dev/tags/console/</guid>
+      <guid>http://localhost:1313/tags/console/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>https://theddy.dev/tags/linux/</link>
+      <link>http://localhost:1313/tags/linux/</link>
       <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
-      <guid>https://theddy.dev/tags/linux/</guid>
+      <guid>http://localhost:1313/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>Shell</title>
-      <link>https://theddy.dev/tags/shell/</link>
+      <link>http://localhost:1313/tags/shell/</link>
       <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
-      <guid>https://theddy.dev/tags/shell/</guid>
+      <guid>http://localhost:1313/tags/shell/</guid>
       <description></description>
     </item>
     <item>
       <title>Terminal</title>
-      <link>https://theddy.dev/tags/terminal/</link>
+      <link>http://localhost:1313/tags/terminal/</link>
       <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
-      <guid>https://theddy.dev/tags/terminal/</guid>
+      <guid>http://localhost:1313/tags/terminal/</guid>
       <description></description>
     </item>
     <item>
       <title>Unix</title>
-      <link>https://theddy.dev/tags/unix/</link>
+      <link>http://localhost:1313/tags/unix/</link>
       <pubDate>Wed, 23 Apr 2025 16:28:36 +0300</pubDate>
-      <guid>https://theddy.dev/tags/unix/</guid>
+      <guid>http://localhost:1313/tags/unix/</guid>
       <description></description>
     </item>
   </channel>
