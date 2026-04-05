@@ -51,6 +51,7 @@ base64url( Header ). base64url( Encrypted Key ). base64url( InitializationVector
 Those provide **confidentiality**, ensuring only intended recipients can read it.
 
 JWA - `JSON Web Algorithms` - provide information on which algorithms to use for "sealing" the payloads. They define cryptographic algorithms for JWTs.
+
 JWK - `JSON Web Key` - defines a JSON data structure for cryptographic keys.
 
 ```json
@@ -63,9 +64,9 @@ JWK - `JSON Web Key` - defines a JSON data structure for cryptographic keys.
       "e": "AQAB",
       "kid": "MDc...",
     },
-    {
-      "kty": "RSA",
-      "use": "sig",
+...
+  ]
+}
 ```
 Those JSON specs describe the key with different fields - "kty" (key type), "use" (public key use), "kid" (key id).
 
@@ -86,12 +87,12 @@ This is a compact, printable representation of a series of claims, along with a 
 
 Meaning:
 ```json
-Header:
+// Header:
 {
   "alg": "HS256",
   "typ": "JWT"
 }
-Payload:
+// Payload:
 {
   "sub": "1234567890",
   "name": "John Doe",
@@ -131,17 +132,16 @@ JWT itself does not require signing or encryption - it is just the format. JWT i
 ## Conclusion
 JWT and JWS are closely related. A JWT defines what is being transmitted - a set of claims. Whereas a JWS defines how those claims are protected - through a digital signature.
 
-JWT term is often used interchangeable as JWS and this is considered correct. Most of the time, when people say "JWT", they actually mean a signed JWS - and knowing that difference matters. 
-
 ```
 JWT (format) + JWS (signature) = signed JWT. 
 ```
 
-That is why people often use "JWT" when they actually mean a signed token (JWS).
+The term "JWT" is often used interchangeably with JWS in practice, and this is generally accepted. Most of the time, when people say "JWT", they are actually referring to a signed token (JWS). However, this is technically imprecise, since JWT is only the data format, while JWS defines how that data is signed  —understanding this distinction is important.
+
 
 ## Refs
-https://www.jwt.io/
-https://datatracker.ietf.org/wg/jose/history/
-https://datatracker.ietf.org/doc/html/rfc7515
-https://auth0.com/blog/demystifying-jose-jwt-family/
-"The JWT Handbook" by Sebastián E. Peyrott
+- https://www.jwt.io/
+- https://datatracker.ietf.org/wg/jose/history/
+- https://datatracker.ietf.org/doc/html/rfc7515
+- https://auth0.com/blog/demystifying-jose-jwt-family/
+- "The JWT Handbook" by Sebastián E. Peyrott
