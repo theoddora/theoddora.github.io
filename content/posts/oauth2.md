@@ -284,6 +284,36 @@ Access tokens are credentials which are used for accessing protected resources. 
 
 As we saw above in the token response endpoints the access token format is a string which the Authorization server can understand. It is not a JWT. OAuth does not define the format of the token. In practice, many access tokens can be opaque tokens - random strings with no decodable meaning. But they can also be JWTs - base64url encoded tokens, which have a payload with claims containing data. This is an implementation detail.
 
+Access tokens may be either "bearer tokens" or "sender-constrained" tokens. Sender-constrained tokens require the OAuth client to prove possession of a private key in some way in order to use the access token, such that the access token by itself would not be usable.
+
+#### What does the Bearer in Authorization: Bearer xxx even mean?
+
+When the client obtains the access token, it is used to fetch a desired resource. A sample request could look like:
+
+```http
+GET /resource HTTP/1.1
+Host: server.example.com
+Authorization: Bearer mF_9.B5f-4.1JqM
+```
+
+The RFC spec defines it:
+> A security token with the property that any party in possession of the token (a "bearer") can use it in any way that any other party in possession of it can. Using a bearer token does not require a bearer to prove possession of cryptographic key material (proof-of-possession).
+
+`Authorization: Bearer ` is the response method the RFC 6750 most strongly recommends. Resource servers MUST support this method.
+
+Why is this the recommended method?
+- The Authorization header is the official place for credentials in HTTP, so proxies and load balancers handle them properly
+- Not exposed in the URL — Headers are not typically logged or stored in browser history or logged
+- Headers are independent of the request's body Content-Type — Works with JSON, form data, or anything else
+
+#### Sender-Constrained tokens
+
+Bearer tokens have a weakness - if someone steals the token, he/she can use it. That is why more advanced setups use sender-constrained tokens:
+- DPoP (Demonstration of Proof-of-Possession)
+- mTLS (mutual TLS)
+
+The client must prove he is the owner, not only holding the token.
+
 ### Refresh Tokens
 The access tokens are short lived. When an access token is issued, there can optionally be issued an additional token `refresh_token`. This token can only be used between the Client and Authorization Server to recreate a new `access_token`.
 
@@ -321,7 +351,7 @@ However, allowing unlimited refresh would make the risk of a leaked Refresh Toke
 Refresh tokens can potentially be stolen as well. We need a mechanism to protect ourselves from refresh token theft. If an attacker steals a refresh token, he/she can request an access token using it and gain access.
 Implementing refresh token rotation can help us mitigate the damage of refresh token theft.
 
-Refresh tokens are single-use: If a refresh token is used, it immediately becomes invalid and a new one is returned. If an old refresh token is used (meaning second attempt, potential malicious user), then we invalidate all issued access tokens and refresh tokens and the resource owner needs to go through the authorization flow to get new valid ones.  
+Refresh tokens are single-use: If a refresh token is used, it immediately becomes invalid and a new one is returned. If an old refresh token is used (meaning second attempt, potential malicious user), then we invalidate all issued access tokens and refresh tokens and the resource owner needs to go through the authorization flow to get new valid ones.
 
 ## Refs
 - https://oauth.net/2/
