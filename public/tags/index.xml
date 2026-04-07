@@ -6,8 +6,22 @@
     <description>Recent content in Tags on Theddy Dev Space</description>
     <generator>Hugo -- 0.157.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2026 21:30:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2026 13:40:25 +0300</lastBuildDate>
     <atom:link href="https://theddy.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Oauth</title>
+      <link>https://theddy.dev/tags/oauth/</link>
+      <pubDate>Tue, 07 Apr 2026 13:40:25 +0300</pubDate>
+      <guid>https://theddy.dev/tags/oauth/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Oidc</title>
+      <link>https://theddy.dev/tags/oidc/</link>
+      <pubDate>Tue, 07 Apr 2026 13:40:25 +0300</pubDate>
+      <guid>https://theddy.dev/tags/oidc/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Jwa</title>
       <link>https://theddy.dev/tags/jwa/</link>

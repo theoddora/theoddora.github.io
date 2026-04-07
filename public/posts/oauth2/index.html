@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>The Framework Behind Modern Authorization - OAuth | Theddy Dev Space</title>
+<meta name="keywords" content="oauth, oidc">
+<meta name="description" content="History
+Before OAuth 2.0, giving access to third party applications to a requested resource, meant we needed to type our credentials - username and password, which are stored on the 3P side and used as an action which was performed on our behalf.
+This is a problem, firstly, because they can be used to access all kinds of resources, not a limited scope of them, no revocation was possible, and secondly, third party software stored those in plaintext. If the third-party software was compromised, our data was also at risk.">
+<meta name="author" content="theddy">
+<link rel="canonical" href="https://theddy.dev/posts/oauth2/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://theddy.dev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://theddy.dev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://theddy.dev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://theddy.dev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://theddy.dev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://theddy.dev/posts/oauth2/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://theddy.dev/posts/oauth2/">
+  <meta property="og:site_name" content="Theddy Dev Space">
+  <meta property="og:title" content="The Framework Behind Modern Authorization - OAuth">
+  <meta property="og:description" content="History Before OAuth 2.0, giving access to third party applications to a requested resource, meant we needed to type our credentials - username and password, which are stored on the 3P side and used as an action which was performed on our behalf.
+This is a problem, firstly, because they can be used to access all kinds of resources, not a limited scope of them, no revocation was possible, and secondly, third party software stored those in plaintext. If the third-party software was compromised, our data was also at risk.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-07T13:40:25+03:00">
+    <meta property="article:modified_time" content="2026-04-07T13:40:25+03:00">
+    <meta property="article:tag" content="Oauth">
+    <meta property="article:tag" content="Oidc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Framework Behind Modern Authorization - OAuth">
+<meta name="twitter:description" content="History
+Before OAuth 2.0, giving access to third party applications to a requested resource, meant we needed to type our credentials - username and password, which are stored on the 3P side and used as an action which was performed on our behalf.
+This is a problem, firstly, because they can be used to access all kinds of resources, not a limited scope of them, no revocation was possible, and secondly, third party software stored those in plaintext. If the third-party software was compromised, our data was also at risk.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://theddy.dev/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "The Framework Behind Modern Authorization - OAuth",
+      "item": "https://theddy.dev/posts/oauth2/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Framework Behind Modern Authorization - OAuth",
+  "name": "The Framework Behind Modern Authorization - OAuth",
+  "description": "History Before OAuth 2.0, giving access to third party applications to a requested resource, meant we needed to type our credentials - username and password, which are stored on the 3P side and used as an action which was performed on our behalf.\nThis is a problem, firstly, because they can be used to access all kinds of resources, not a limited scope of them, no revocation was possible, and secondly, third party software stored those in plaintext. If the third-party software was compromised, our data was also at risk.\n",
+  "keywords": [
+    "oauth", "oidc"
+  ],
+  "articleBody": "History Before OAuth 2.0, giving access to third party applications to a requested resource, meant we needed to type our credentials - username and password, which are stored on the 3P side and used as an action which was performed on our behalf.\nThis is a problem, firstly, because they can be used to access all kinds of resources, not a limited scope of them, no revocation was possible, and secondly, third party software stored those in plaintext. If the third-party software was compromised, our data was also at risk.\nWith OAuth, we solve this problem in a simple matter - use an “access token” instead of a password. But you would say - “well a token can be stolen, just like a password”. The core idea is that this token is issued to be scoped, time-limited and revocable credential, issued by an authorization server. This is called “delegated authorization without credential sharing”.\nAn important remark is that OAuth 2.0 is not designed for authentication purposes. It should be used for authorization - permissions, scopes, and answering questions like “is your token scoped to do a particular thing?”. OIDC is built on top of OAuth 2.0 for authentication purposes. This article will include OIDC-related attributes in the authorization flows, however, a separate deep dive of OIDC is to follow.\nOAuth 2.0 Authorization Framework of specifications OAuth 2.0 is the industry-standard protocol for authorization. The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either on behalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf.\nOAuth 2.0 (RFC 6749) - The OAuth 2.0 Core - 2012 OAuth 2.0 Bearer (RFC 6750) - Bearer Token Usage - How to “use” tokens (Authorization header, etc.) - 2012 OAuth 2.0 Assertions (RFC 7521) - Client Authentication and Authorization Grants - 2015 OAuth 2.0 JWT Profile (RFC 7523) - JWT Profile for Client Authentication and Authorization Grants - 2015 PKCE (RFC 7636) - Proof Key for Code Exchange by OAuth Public Clients - Prevents authorization code interception - 2015 OAuth 2.0 Token Exchange (RFC 8693) - OAuth 2.0 Token Exchange - 2020 OAuth 2.1 Draft - The OAuth 2.1 Authorization Framework OAuth 2.0 Roles OAuth 2.0 RFC defines four roles:\nsequenceDiagram participant Client participant AuthorizationServer as Authorization Server participant ResourceOwner as Resource Owner participant ResourceServer as Resource Server Client--\u003e\u003eAuthorizationServer: 1. Authorization Request AuthorizationServer\u003c\u003c--\u003e\u003eResourceOwner: 2. Give Consent AuthorizationServer--\u003e\u003eClient: 3. Grants Authorization Client--\u003e\u003eAuthorizationServer: 4. Present Authorization Grant for an Access Token AuthorizationServer--\u003e\u003eClient: 5. Issues Access Token Client--\u003e\u003eResourceServer: 6. Call API with Access Token ResourceServer--\u003e\u003eClient: 7. Protected Resource Resource Owner - An entity capable of granting access to a protected resource. When the resource owner is a person, it is referred to as an end-user (user who can click on yes/no when prompted). A resource owner is “any entity capable of delegating access to a protected resource”. With OAuth and OIDC the client does not impersonate the resource owner, but works on behalf of the resource owner. The resource owner isn’t asking for permission to the resource; he or she already has that permission. Instead, is asking for permission for the client to access the resource on behalf of the owner. Resource Server - The server hosting the protected resources, capable of accepting and responding to protected resource requests with access tokens. Client - A third-party application making protected resource access requests on behalf of the resource owner and with its authorization. The term “client” does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices). OIDC Note: OIDC clients are also known as RPs or “relying parties”. That’s because they rely on an outside service (the authorization server) to vouch for the identity of a user: an RP requests authentication for a user, but does not actually perform the authentication itself. Authorization Server - The server issuing access tokens to the client after successfully authenticating the resource owner and obtaining authorization. OIDC Note: The authorization server, in turn, is also referred to as the OP (OpenID Provider). The authorization server and resource server may be the same server or separate. A typical pattern is one authorization server (e.g., Google) issuing tokens to multiple APIs (Gmail, Drive, Calendar).\nEndpoints OAuth 2.0 in essence has three endpoints in the orchestration of access grant and token retrieval - /auth, /token, /callback.\nEndpoint Location Role HTTP Method Authorization Endpoint Authorization Server Interact with resource owner (end user) to get consent GET (MUST), POST (MAY) Token Endpoint Authorization Server Exchange grant for access token POST (MUST) Redirection Endpoint Client Receive response from authorization server (callback) — Authorization Endpoint and Token Endpoint require TLS. Confidential Clients (i.e. server-side applications) MUST authenticate at the Token Endpoint.\nGrant Types In OAuth 2.0, we have the following grant types, often referred to as different OAuth 2.0 flows:\nAuthorization Code Grant - exchange an authorization code for an access token Authorization Code Grant with PKCE Client Credentials Grant (deprecated) Implicit Grant (deprecated) Resource Owner Password Grant We will take a look at the first three in more detail. The implicit and password grant are deprecated and have major security considerations. They have been removed in the OAuth 2.1.\nGrant Types: Authorization Code Grant Starting the with the most common OAuth grant type.\nsequenceDiagram participant Client participant AuthorizationServer as Authorization Server participant ResourceOwner as Resource Owner participant ResourceServer as Resource Server Client-\u003e\u003eAuthorizationServer: 1. Authorization Request AuthorizationServer\u003c\u003c-\u003e\u003eResourceOwner: 2. Resource Owner Authentication AuthorizationServer-\u003e\u003eClient: 3. Authorization Code Grant Client-\u003e\u003eAuthorizationServer: 4. Access Token Request AuthorizationServer-\u003e\u003eClient: 5. Access Token Grant Client-\u003e\u003eResourceServer: 6. Resource Request with access token ResourceServer-\u003e\u003eClient: 7. Resource Response Let’s see the endpoints for /auth, /callback and /token.\nAuthorization Request GET /auth?client_id=1234\u0026redirect_uri=https://client-url/callback\u0026response_type=code\u0026scope=photo\u0026state=456789 HTTP/1.1 Host: authorization-server-url We can see that the first request contains interesting information:\nclient_id - its unique identifier redirect_uri - the callback url after a successful authentication and authorization grant of the resource owner response_type - code, meaning we are in the authorization code grant scope (optional) - what kind of scope of resources we request access to state (optional) - random string tying the auth request to the following callback request Note: For OIDC ID Tokens we can also have the following optional parameter to protect against replay of ID tokens.\nnonce (optional) - stops replay attacks on ID tokens (OIDC tokens), which gets embedded as a claim of the ID token. Callback After the request has been authorized, we are redirected to the redirect_uri parameter of the auth request:\nGET /callback?code=h4928t2hf\u0026state=456789 HTTP/1.1 Host: client-url This request contains two parameters:\ncode - authorization code issued by the authorization server. It will be used to be exchanged for a token. state - state value from the authorization request to tie these two requests together. Token request The Client is able to request an access token from the Authorization Server by exchanging the code it received.\nPOST /token HTTP/1.1 Host: authorization-server-url client_id=12345\u0026client_secret=SECRET\u0026redirect_uri=https://client-url/callback\u0026grant_type=authorization_code\u0026code=h4928t2hf We can see two new parameters\nclient_secret - a secret value assigned to the client by the authorization server during the initial registration. This value authenticates the client to the authorization server. This was done in the beginning when the client was registered to the authorization server as a one-time action. grant_type - always set to authorization_code for the authorization code grant. After this request we can receive\n{ \"token_type\": \"Bearer\", \"expires_in\": 86400, \"access_token\":\"irngrngw\", \"scope\": \"photo\", \"refresh_token\": \"eCqC6CI9bFG\" } The client has a valid token that can now be used for resource request from the resource server.\nGET /photo_info HTTP/1.1 Host: resource-server-url Authorization: Bearer irngrngw Security highlights: The state parameter is CSRF protection. The client generates a random string per request and verifies it matches on callback. It is also used as an application state. Authorization codes are single-use. If a second use is detected, all tokens issued with that code should be revoked. Authorization codes should have a maximum lifetime of 10 minutes. The Token Request happens over a back-channel (server-to-server), so the access token is never exposed to the browser. Grant Types: Client Credentials Grant A Grant Type for machine-to-machine (M2M) communication where no user is involved. Used when the client accesses its own resources.\nsequenceDiagram participant Client participant AuthorizationServer as Authorization Server participant ResourceServer as Resource Server Client-\u003e\u003eAuthorizationServer: 1. Access Token Request AuthorizationServer-\u003e\u003eClient: 2. Access Token Grant Client-\u003e\u003eResourceServer: 3. Resource Request with access token ResourceServer-\u003e\u003eClient: 4. Resource Response Refresh Token SHOULD NOT be issued — the client can always obtain a new token with its own credentials, so a Refresh Token serves no purpose.\nGrant Types: Authorization Code Grant + PKCE PKCE (Proof Key for Code Exchange) is an extension to OAuth 2.0 to prevent authorization code interception attacks. It becomes mandatory for all client types in OAuth 2.1.\nLet’s first check the difference of clients - we just covered the confidential clients. They are back-channel clients (servers), which are private so they can store the client_secret securely. An example is a server-side application.\nHowever, we also have public clients - SPA, mobile apps. We have access to the applications’ source code. The browser is a front-channel client which is public. With PKCE we can secure public clients. With the PKCE we can secure both public and confidential clients. That is why this hardened solution is chosen in the OAuth 2.1.\nWhat happens if you have a mobile app, and a malicious user is able to register another app with the same redirect_uri scheme? Your app makes an authorize request, an authorization code is returned. But the malicious app receives the authorization code grant because it has configured the redirect_url to be the same and achieves interception. Now, the malicious app can make the token request and steal the token intended of the original app. This is an example of authorization code interception attack - inter-app URL scheme hijacking.\nPKCE can help prevent it. Here is how it works:\nsequenceDiagram participant Client participant AuthorizationServer as Authorization Server Client-)Client:Generate code_verifier=(Random code) Client-)Client:Generate challenge: code_challenge = Hash(code_verifier), code_challenge_method=S256 Client-\u003e\u003eAuthorizationServer: 1. Authorization Request includes code_challenge, code_challenge_method AuthorizationServer-\u003e\u003eClient: 2. Authorization Code Response - auth_code Client-\u003e\u003eAuthorizationServer: 3. Access Token Request includes code_verifier=RC, code=auth_code AuthorizationServer-\u003e\u003eClient: 4. Access Token Grant Let’s see interaction with the endpoints for /auth, /callback and /token.\nAuthorize Before redirecting the user to the authorization server, the client first generates a secret code verifier and challenge.\nThe code verifier is a cryptographically random string using the characters A-Z, a-z, 0-9, and the punctuation characters -._~ (hyphen, period, underscore, and tilde), between 43 and 128 characters long.\nOnce the client has generated the code verifier, it uses that to create the code challenge. For devices that can perform a SHA256 hash, the code challenge is a BASE64-URL-encoded string of the SHA256 hash of the code verifier.\nExample:\ncode_verifier=cHH3doNqAMNWXoqjLO0OvTn89enL_SK--XbrwPiHmWmIsWHYN code_challenge=base64url(sha256(code_verifier)) # (l9jC5bcXvHLQgUaFFmYC-_k5FXhUZhACvoniOimvEL4) The client stores the code verifier. It will be needed later.\nNow it builds the authorization URL:\nGET /auth? response_type=code \u0026client_id=1234 \u0026redirect_uri=https://client-url/callback \u0026scope=photo \u0026state=456789 \u0026code_challenge=l9jC5bcXvHLQgUaFFmYC-_k5FXhUZhACvoniOimvEL4 \u0026code_challenge_method=S256 HTTP/1.1 Host: authorization-server-url Callback Callback remains as is.\nGET /callback?code=h4928t2hf\u0026state=456789 HTTP/1.1 Token Now we’re ready to exchange the authorization code for an access token.\nPOST /token HTTP/1.1 Host: authorization-server-url grant_type=authorization_code \u0026client_id=1234 \u0026redirect_uri=https://client-url/callback \u0026code=h4928t2hf \u0026code_verifier=cHH3doNqAMNWXoqjLO0OvTn89enL_SK--XbrwPiHmWmIsWHYN The authorization server will check whether the verifier matches the challenge that was used in the authorization request. This ensures that a malicious party that intercepted the authorization code will not be able to use it.\nAnd we receive the response:\n{ \"token_type\": \"Bearer\", \"expires_in\": 86400, \"access_token\": \"xUqdhyQT0gXipd5qKtk3V0SADQETT1rBU0kVH_EvQwPxaHmPU5TuA_sL8EgusBbdhidSmu5a\", \"scope\": \"photo\", \"refresh_token\": \"pIxkNFutVcf6_LRk4wLNx6wP\" } Access Tokens and Refresh Tokens Access Tokens Access tokens are credentials which are used for accessing protected resources. They have scope, lifetime and other access attributes.\nAs we saw above in the token response endpoints the access token format is a string which the Authorization server can understand. It is not a JWT. OAuth does not define the format of the token. In practice, many access tokens can be opaque tokens - random strings with no decodable meaning. But they can also be JWTs - base64url encoded tokens, which have a payload with claims containing data. This is an implementation detail.\nRefresh Tokens The access tokens are short lived. When an access token is issued, there can optionally be issued an additional token refresh_token. This token can only be used between the Client and Authorization Server to recreate a new access_token.\nAfter we have received a refresh_token and an access_token, there is no further user interaction involved in order to issue a new access_token. The Client uses the refresh_token and obtains new pairs of access_token and refresh_token from the Authorization server. Think of it as completing the initial “user approval” via Authorization Code Grant, then being able to repeat token renewal over a back-channel without the user involvement.\nsequenceDiagram participant Client participant AuthorizationServer as Authorization Server participant ResourceServer as Resource Server Client-\u003e\u003eAuthorizationServer: 1. Authorization Code Flow (completes) AuthorizationServer--\u003e\u003eClient: 2. Access Token and Refresh Token Client-\u003e\u003eResourceServer: 3. Resource Request with access token ResourceServer--\u003e\u003eClient: 4. 200 OK Client--\u003eClient: Time has passed and access token has expired. Client-\u003e\u003eResourceServer: 5. Resource Request with access token ResourceServer--\u003e\u003eClient: 6. 401 Unauthorized Client-\u003e\u003eAuthorizationServer: 7. Call `/token` with grant_type=refresh_token and pass refresh token AuthorizationServer--\u003e\u003eClient: 8. New Access Token and Refresh Token Client-\u003e\u003eResourceServer: 9. Resource Request with new access token ResourceServer--\u003e\u003eClient: 10. 200 OK However, allowing unlimited refresh would make the risk of a leaked Refresh Token permanent. In practice, limits are almost always applied:\nLimitation Method Description Expiration Refresh Token expires after a set period (e.g., 30 or 90 days); user must re-login Refresh Token Rotation Each use replaces the Refresh Token with a new one; old token is immediately revoked Maximum Use Count Refresh Token expires after a specified number of uses Absolute Lifetime Refresh Token expires a fixed time after initial issuance, regardless of renewal activity Refresh Token Rotation Refresh tokens can potentially be stolen as well. We need a mechanism to protect ourselves from refresh token theft. If an attacker steals a refresh token, he/she can request an access token using it and gain access. Implementing refresh token rotation can help us mitigate the damage of refresh token theft.\nRefresh tokens are single-use: If a refresh token is used, it immediately becomes invalid and a new one is returned. If an old refresh token is used (meaning second attempt, potential malicious user), then we invalidate all issued access tokens and refresh tokens and the resource owner needs to go through the authorization flow to get new valid ones.\nRefs https://oauth.net/2/ https://dev.to/kanywst/rfc-6749-deep-dive-understanding-oauth-20-design-decisions-from-the-specification-2amb https://labs.detectify.com/writeups/account-hijacking-using-dirty-dancing-in-sign-in-oauth-flows/#explanation-of-different-oauth-dances https://www.oauth.com/playground/authorization-code-with-pkce.html ",
+  "wordCount" : "2421",
+  "inLanguage": "en",
+  "datePublished": "2026-04-07T13:40:25+03:00",
+  "dateModified": "2026-04-07T13:40:25+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "theddy"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://theddy.dev/posts/oauth2/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Theddy Dev Space",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://theddy.dev/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://theddy.dev/" accesskey="h" title="Theddy Dev Space (Alt + H)">Theddy Dev Space</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://theddy.dev/" title="Theddy Dev Space">
+                    <span>home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://theddy.dev/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://theddy.dev/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://theddy.dev/">Home</a>&nbsp;»&nbsp;<a href="https://theddy.dev/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      The Framework Behind Modern Authorization - OAuth
+    </h1>
+    <div class="post-meta"><span title='2026-04-07 13:40:25 +0300 EEST'>April 7, 2026</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;2421 words&nbsp;·&nbsp;theddy
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#history">History</a></li>
+    <li><a href="#oauth-20-authorization-framework-of-specifications">OAuth 2.0 Authorization Framework of specifications</a></li>
+    <li><a href="#oauth-20-roles">OAuth 2.0 Roles</a></li>
+    <li><a href="#endpoints">Endpoints</a></li>
+    <li><a href="#grant-types">Grant Types</a>
+      <ul>
+        <li><a href="#grant-types-authorization-code-grant">Grant Types: Authorization Code Grant</a>
+          <ul>
+            <li><a href="#authorization-request">Authorization Request</a></li>
+            <li><a href="#callback">Callback</a></li>
+            <li><a href="#token-request">Token request</a></li>
+            <li><a href="#security-highlights">Security highlights:</a></li>
+          </ul>
+        </li>
+        <li><a href="#grant-types-client-credentials-grant">Grant Types: Client Credentials Grant</a></li>
+        <li><a href="#grant-types-authorization-code-grant--pkce">Grant Types: Authorization Code Grant + PKCE</a>
+          <ul>
+            <li><a href="#authorize">Authorize</a></li>
+            <li><a href="#callback-1">Callback</a></li>
+            <li><a href="#token">Token</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#access-tokens-and-refresh-tokens">Access Tokens and Refresh Tokens</a>
+      <ul>
+        <li><a href="#access-tokens">Access Tokens</a></li>
+        <li><a href="#refresh-tokens">Refresh Tokens</a></li>
+        <li><a href="#refresh-token-rotation">Refresh Token Rotation</a></li>
+      </ul>
+    </li>
+    <li><a href="#refs">Refs</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="history">History<a hidden class="anchor" aria-hidden="true" href="#history">#</a></h2>
+<p>Before OAuth 2.0, giving access to third party applications to a requested resource, meant we needed to type our credentials - username and password, which are stored on the 3P side and used as an action which was performed on our behalf.</p>
+<p>This is a problem, firstly, because they can be used to access all kinds of resources, not a limited scope of them, no revocation was possible, and secondly, third party software stored those in plaintext. If the third-party software was compromised, our data was also at risk.</p>
+<p>With OAuth, we solve this problem in a simple matter - use an &ldquo;access token&rdquo; instead of a password. But you would say - &ldquo;well a token can be stolen, just like a password&rdquo;. The core idea is that this token is issued to be scoped, time-limited and revocable credential, issued by an authorization server. This is called &ldquo;delegated authorization without credential sharing&rdquo;.</p>
+<p>An important remark is that OAuth 2.0 is not designed for authentication purposes. It should be used for authorization - permissions, scopes, and answering questions like &ldquo;is your token scoped to do a particular thing?&rdquo;. OIDC is built on top of OAuth 2.0 for authentication purposes. This article will include OIDC-related attributes in the authorization flows, however, a separate deep dive of OIDC is to follow.</p>
+<h2 id="oauth-20-authorization-framework-of-specifications">OAuth 2.0 Authorization Framework of specifications<a hidden class="anchor" aria-hidden="true" href="#oauth-20-authorization-framework-of-specifications">#</a></h2>
+<p>OAuth 2.0 is the industry-standard protocol for authorization. The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either on behalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf.</p>
+<ol>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6749">OAuth 2.0 (RFC 6749)</a> - The OAuth 2.0 Core - 2012</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6750">OAuth 2.0 Bearer (RFC 6750)</a> - Bearer Token Usage - How to &ldquo;use&rdquo; tokens (Authorization header, etc.) - 2012</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7521">OAuth 2.0 Assertions (RFC 7521)</a> - Client Authentication and Authorization Grants - 2015</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7523">OAuth 2.0 JWT Profile (RFC 7523)</a> - JWT Profile for Client Authentication and Authorization Grants - 2015</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7636">PKCE (RFC 7636)</a> - Proof Key for Code Exchange by OAuth Public Clients - Prevents authorization code interception - 2015</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8693">OAuth 2.0 Token Exchange (RFC 8693)</a> - OAuth 2.0 Token Exchange - 2020</li>
+<li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-v2-1/">OAuth 2.1 Draft</a> - The OAuth 2.1 Authorization Framework</li>
+</ol>
+<h2 id="oauth-20-roles">OAuth 2.0 Roles<a hidden class="anchor" aria-hidden="true" href="#oauth-20-roles">#</a></h2>
+<p>OAuth 2.0 RFC defines four roles:</p>
+<div class="mermaid">
+    sequenceDiagram
+    participant Client
+    participant AuthorizationServer as Authorization Server
+    participant ResourceOwner as Resource Owner
+    participant ResourceServer as Resource Server
+
+    Client-->>AuthorizationServer: 1. Authorization Request
+    AuthorizationServer<<-->>ResourceOwner: 2. Give Consent
+    AuthorizationServer-->>Client: 3. Grants Authorization
+    Client-->>AuthorizationServer: 4. Present Authorization Grant for an Access Token
+    AuthorizationServer-->>Client: 5. Issues Access Token
+    Client-->>ResourceServer: 6. Call API with Access Token
+    ResourceServer-->>Client: 7. Protected Resource
+</div>
+
+<ul>
+<li><strong>Resource Owner</strong> - An entity capable of granting access to a protected resource. When the resource owner is a person, it is referred to as an <em>end-user</em> (user who can click on yes/no when prompted). A resource owner is &ldquo;any entity capable of delegating access to a protected resource&rdquo;. <strong>With OAuth and OIDC the client does not impersonate the resource owner, but works on behalf of the resource owner.</strong> The resource owner isn’t asking for permission to the resource; he or she already has that permission. Instead, is asking for permission for the <em>client</em> to access the resource on behalf of the owner.</li>
+<li><strong>Resource Server</strong> - The server hosting the protected resources, capable of accepting and responding to protected resource requests with access tokens.</li>
+<li><strong>Client</strong> - A third-party <em>application</em> making protected resource access requests on behalf of the resource owner and with its authorization. The term &ldquo;client&rdquo; does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices).
+<ul>
+<li>OIDC Note: OIDC clients are also known as RPs or &ldquo;<em>relying parties</em>&rdquo;. That’s because they rely on an outside service (the authorization server) to vouch for the identity of a user: an RP requests authentication for a user, but does not actually perform the authentication itself.</li>
+</ul>
+</li>
+<li><strong>Authorization Server</strong> - The server issuing access tokens to the client after successfully authenticating the resource owner and obtaining authorization.
+<ul>
+<li>OIDC Note: The authorization server, in turn, is also referred to as the OP (<em>OpenID Provider</em>).</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>The authorization server and resource server may be the same server or separate.
+A typical pattern is one authorization server (e.g., Google) issuing tokens to multiple APIs (Gmail, Drive, Calendar).</p>
+</blockquote>
+<h2 id="endpoints">Endpoints<a hidden class="anchor" aria-hidden="true" href="#endpoints">#</a></h2>
+<p>OAuth 2.0 in essence has three endpoints in the orchestration of access grant and token retrieval - <code>/auth</code>, <code>/token</code>, <code>/callback</code>.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Endpoint</th>
+          <th>Location</th>
+          <th>Role</th>
+          <th>HTTP Method</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Authorization Endpoint</td>
+          <td>Authorization Server</td>
+          <td>Interact with resource owner (end user) to get consent</td>
+          <td>GET (MUST), POST (MAY)</td>
+      </tr>
+      <tr>
+          <td>Token Endpoint</td>
+          <td>Authorization Server</td>
+          <td>Exchange grant for access token</td>
+          <td>POST (MUST)</td>
+      </tr>
+      <tr>
+          <td>Redirection Endpoint</td>
+          <td>Client</td>
+          <td>Receive response from authorization server (callback)</td>
+          <td>—</td>
+      </tr>
+  </tbody>
+</table>
+<p>Authorization Endpoint and Token Endpoint require TLS.
+Confidential Clients (i.e. server-side applications) MUST authenticate at the Token Endpoint.</p>
+<h2 id="grant-types">Grant Types<a hidden class="anchor" aria-hidden="true" href="#grant-types">#</a></h2>
+<p>In OAuth 2.0, we have the following grant types, often referred to as different OAuth 2.0 flows:</p>
+<ul>
+<li>Authorization Code Grant - exchange an authorization code for an access token</li>
+<li>Authorization Code Grant with PKCE</li>
+<li>Client Credentials Grant</li>
+<li>(deprecated) Implicit Grant</li>
+<li>(deprecated) Resource Owner Password Grant</li>
+</ul>
+<p>We will take a look at the first three in more detail. The implicit and password grant are deprecated and have major security considerations. They have been removed in the OAuth 2.1.</p>
+<h3 id="grant-types-authorization-code-grant">Grant Types: Authorization Code Grant<a hidden class="anchor" aria-hidden="true" href="#grant-types-authorization-code-grant">#</a></h3>
+<p>Starting the with the most common OAuth grant type.</p>
+<div class="mermaid">
+    sequenceDiagram
+    participant Client
+    participant AuthorizationServer as Authorization Server
+    participant ResourceOwner as Resource Owner
+    participant ResourceServer as Resource Server
+
+    Client->>AuthorizationServer: 1. Authorization Request
+    AuthorizationServer<<->>ResourceOwner: 2. Resource Owner Authentication
+    AuthorizationServer->>Client: 3. Authorization Code Grant
+    Client->>AuthorizationServer: 4. Access Token Request
+    AuthorizationServer->>Client: 5. Access Token Grant
+    Client->>ResourceServer: 6. Resource Request with access token
+    ResourceServer->>Client: 7. Resource Response
+</div>
+
+<p>Let&rsquo;s see the endpoints for <code>/auth</code>, <code>/callback</code> and <code>/token</code>.</p>
+<h4 id="authorization-request">Authorization Request<a hidden class="anchor" aria-hidden="true" href="#authorization-request">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">GET /auth?client_id=1234&amp;redirect_uri=https://client-url/callback&amp;response_type=code&amp;scope=photo&amp;state=456789 HTTP/1.1 
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Host: authorization-server-url
+</span></span></span></code></pre></div><p>We can see that the first request contains interesting information:</p>
+<ul>
+<li><code>client_id</code> - its unique identifier</li>
+<li><code>redirect_uri</code> - the callback url after a successful authentication and authorization grant of the resource owner</li>
+<li><code>response_type</code> - code, meaning we are in the authorization code grant</li>
+<li><code>scope</code> (optional) - what kind of scope of resources we request access to</li>
+<li><code>state</code> (optional) - random string tying the auth request to the following callback request</li>
+</ul>
+<p>Note: For OIDC ID Tokens we can also have the following optional parameter to protect against replay of ID tokens.</p>
+<ul>
+<li><code>nonce</code> (optional) - stops replay attacks on ID tokens (OIDC tokens), which gets embedded as a claim of the ID token.</li>
+</ul>
+<h4 id="callback">Callback<a hidden class="anchor" aria-hidden="true" href="#callback">#</a></h4>
+<p>After the request has been authorized, we are redirected to the <code>redirect_uri</code> parameter of the auth request:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">GET</span> /callback?code=h4928t2hf&amp;state=456789 <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">client-url</span>
+</span></span></code></pre></div><p>This request contains two parameters:</p>
+<ul>
+<li><code>code</code> - authorization code issued by the authorization server. It will be used to be exchanged for a token.</li>
+<li><code>state</code> - state value from the authorization request to tie these two requests together.</li>
+</ul>
+<h4 id="token-request">Token request<a hidden class="anchor" aria-hidden="true" href="#token-request">#</a></h4>
+<p>The Client is able to request an access token from the Authorization Server by exchanging the code it received.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">POST</span> /token <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">authorization-server-url</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client_id=12345&amp;client_secret=SECRET&amp;redirect_uri=https://client-url/callback&amp;grant_type=authorization_code&amp;code=h4928t2hf
+</span></span></code></pre></div><p>We can see two new parameters</p>
+<ul>
+<li><code>client_secret</code> - a secret value assigned to the client by the authorization server during the initial registration. This value authenticates the client to the authorization server. This was done in the beginning when the client was registered to the authorization server as a one-time action.</li>
+<li><code>grant_type</code> - always set to authorization_code for the authorization code grant.</li>
+</ul>
+<p>After this request we can receive</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;token_type&#34;</span>: <span style="color:#e6db74">&#34;Bearer&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;expires_in&#34;</span>: <span style="color:#ae81ff">86400</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;access_token&#34;</span>:<span style="color:#e6db74">&#34;irngrngw&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;photo&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;refresh_token&#34;</span>: <span style="color:#e6db74">&#34;eCqC6CI9bFG&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The client has a valid token that can now be used for resource request from the resource server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">GET</span> /photo_info <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">resource-server-url</span>
+</span></span><span style="display:flex;"><span>Authorization<span style="color:#f92672">:</span> <span style="color:#ae81ff">Bearer irngrngw</span>
+</span></span></code></pre></div><h4 id="security-highlights">Security highlights:<a hidden class="anchor" aria-hidden="true" href="#security-highlights">#</a></h4>
+<ul>
+<li>The state parameter is CSRF protection. The client generates a random string per request and verifies it matches on callback. It is also used as an application state.</li>
+<li>Authorization codes are single-use. If a second use is detected, all tokens issued with that code should be revoked.</li>
+<li>Authorization codes should have a maximum lifetime of 10 minutes.</li>
+<li>The Token Request happens over a back-channel (server-to-server), so the access token is never exposed to the browser.</li>
+</ul>
+<h3 id="grant-types-client-credentials-grant">Grant Types: Client Credentials Grant<a hidden class="anchor" aria-hidden="true" href="#grant-types-client-credentials-grant">#</a></h3>
+<p>A Grant Type for machine-to-machine (M2M) communication where no user is involved. Used when the client accesses its own resources.</p>
+<div class="mermaid">
+    sequenceDiagram
+    participant Client
+    participant AuthorizationServer as Authorization Server
+    participant ResourceServer as Resource Server
+
+    Client->>AuthorizationServer: 1. Access Token Request
+    AuthorizationServer->>Client: 2. Access Token Grant
+    Client->>ResourceServer: 3. Resource Request with access token
+    ResourceServer->>Client: 4. Resource Response
+</div>
+
+<p>Refresh Token SHOULD NOT be issued — the client can always obtain a new token with its own credentials, so a Refresh Token serves no purpose.</p>
+<h3 id="grant-types-authorization-code-grant--pkce">Grant Types: Authorization Code Grant + PKCE<a hidden class="anchor" aria-hidden="true" href="#grant-types-authorization-code-grant--pkce">#</a></h3>
+<p>PKCE (Proof Key for Code Exchange) is an extension to OAuth 2.0 to prevent authorization code interception attacks. It becomes <strong>mandatory</strong> for all client types in OAuth 2.1.</p>
+<p>Let&rsquo;s first check the difference of clients - we just covered the confidential clients. They are back-channel clients (servers), which are private so they can store the <code>client_secret</code> securely. An example is a server-side application.</p>
+<p>However, we also have public clients - SPA, mobile apps. We have access to the applications&rsquo; source code. The browser is a front-channel client which is public. With PKCE we can secure public clients. With the PKCE we can secure both public and confidential clients. That is why this hardened solution is chosen in the OAuth 2.1.</p>
+<p>What happens if you have a mobile app, and a malicious user is able to register another app with the same <code>redirect_uri</code> scheme? Your app makes an authorize request, an authorization code is returned. But the malicious app receives the authorization code grant because it has configured the <code>redirect_url</code> to be the same and achieves interception. Now, the malicious app can make the <code>token</code> request and steal the token intended of the original app. This is an example of authorization code interception attack - inter-app URL scheme hijacking.</p>
+<p>PKCE can help prevent it. Here is how it works:</p>
+<div class="mermaid">
+    sequenceDiagram
+    participant Client
+    participant AuthorizationServer as Authorization Server
+
+    Client-)Client:Generate code_verifier=(Random code)
+    Client-)Client:Generate challenge: code_challenge = Hash(code_verifier), code_challenge_method=S256
+    Client->>AuthorizationServer: 1. Authorization Request includes code_challenge, code_challenge_method
+    AuthorizationServer->>Client: 2. Authorization Code Response - auth_code
+    Client->>AuthorizationServer: 3. Access Token Request includes code_verifier=RC, code=auth_code
+    AuthorizationServer->>Client: 4. Access Token Grant
+</div>
+
+<p>Let&rsquo;s see interaction with the endpoints for <code>/auth</code>, <code>/callback</code> and <code>/token</code>.</p>
+<h4 id="authorize">Authorize<a hidden class="anchor" aria-hidden="true" href="#authorize">#</a></h4>
+<p>Before redirecting the user to the authorization server, the client first generates a secret code verifier and challenge.</p>
+<p>The code verifier is a cryptographically random string using the characters A-Z, a-z, 0-9, and the punctuation characters -._~ (hyphen, period, underscore, and tilde), between 43 and 128 characters long.</p>
+<p>Once the client has generated the code verifier, it uses that to create the code challenge. For devices that can perform a SHA256 hash, the code challenge is a BASE64-URL-encoded string of the SHA256 hash of the code verifier.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>code_verifier<span style="color:#f92672">=</span>cHH3doNqAMNWXoqjLO0OvTn89enL_SK--XbrwPiHmWmIsWHYN
+</span></span><span style="display:flex;"><span>code_challenge<span style="color:#f92672">=</span>base64url<span style="color:#f92672">(</span>sha256<span style="color:#f92672">(</span>code_verifier<span style="color:#f92672">))</span> <span style="color:#75715e"># (l9jC5bcXvHLQgUaFFmYC-_k5FXhUZhACvoniOimvEL4)</span>
+</span></span></code></pre></div><p>The client stores the code verifier. It will be needed later.</p>
+<p>Now it builds the authorization URL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">GET /auth?
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">  response_type=code
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">  &amp;client_id=1234
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">  &amp;redirect_uri=https://client-url/callback
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">  &amp;scope=photo
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">  &amp;state=456789
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">  &amp;code_challenge=l9jC5bcXvHLQgUaFFmYC-_k5FXhUZhACvoniOimvEL4
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">  &amp;code_challenge_method=S256 HTTP/1.1 
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Host: authorization-server-url
+</span></span></span></code></pre></div><h4 id="callback-1">Callback<a hidden class="anchor" aria-hidden="true" href="#callback-1">#</a></h4>
+<p>Callback remains as is.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">GET</span> /callback?code=h4928t2hf&amp;state=456789 <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span></code></pre></div><h4 id="token">Token<a hidden class="anchor" aria-hidden="true" href="#token">#</a></h4>
+<p>Now we&rsquo;re ready to exchange the authorization code for an access token.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">POST</span> /token <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">authorization-server-url</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>grant_type=authorization_code
+</span></span><span style="display:flex;"><span>&amp;client_id=1234
+</span></span><span style="display:flex;"><span>&amp;redirect_uri=https://client-url/callback
+</span></span><span style="display:flex;"><span>&amp;code=h4928t2hf
+</span></span><span style="display:flex;"><span>&amp;code_verifier=cHH3doNqAMNWXoqjLO0OvTn89enL_SK--XbrwPiHmWmIsWHYN
+</span></span></code></pre></div><p>The authorization server will check whether the verifier matches the challenge that was used in the authorization request. This ensures that a malicious party that intercepted the authorization code will not be able to use it.</p>
+<p>And we receive the response:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;token_type&#34;</span>: <span style="color:#e6db74">&#34;Bearer&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;expires_in&#34;</span>: <span style="color:#ae81ff">86400</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;access_token&#34;</span>: <span style="color:#e6db74">&#34;xUqdhyQT0gXipd5qKtk3V0SADQETT1rBU0kVH_EvQwPxaHmPU5TuA_sL8EgusBbdhidSmu5a&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;photo&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;refresh_token&#34;</span>: <span style="color:#e6db74">&#34;pIxkNFutVcf6_LRk4wLNx6wP&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="access-tokens-and-refresh-tokens">Access Tokens and Refresh Tokens<a hidden class="anchor" aria-hidden="true" href="#access-tokens-and-refresh-tokens">#</a></h2>
+<h3 id="access-tokens">Access Tokens<a hidden class="anchor" aria-hidden="true" href="#access-tokens">#</a></h3>
+<p>Access tokens are credentials which are used for accessing protected resources. They have scope, lifetime and other access attributes.</p>
+<p>As we saw above in the token response endpoints the access token format is a string which the Authorization server can understand. It is not a JWT. OAuth does not define the format of the token. In practice, many access tokens can be opaque tokens - random strings with no decodable meaning. But they can also be JWTs - base64url encoded tokens, which have a payload with claims containing data. This is an implementation detail.</p>
+<h3 id="refresh-tokens">Refresh Tokens<a hidden class="anchor" aria-hidden="true" href="#refresh-tokens">#</a></h3>
+<p>The access tokens are short lived. When an access token is issued, there can optionally be issued an additional token <code>refresh_token</code>. This token can only be used between the Client and Authorization Server to recreate a new <code>access_token</code>.</p>
+<p>After we have received a <code>refresh_token</code> and an <code>access_token</code>, there is no further user interaction involved in order to issue a new <code>access_token</code>. The Client uses the <code>refresh_token</code> and obtains new pairs of <code>access_token</code> and <code>refresh_token</code> from the Authorization server. Think of it as completing the initial &ldquo;user approval&rdquo; via Authorization Code Grant, then being able to repeat token renewal over a back-channel without the user involvement.</p>
+<div class="mermaid">
+    sequenceDiagram
+    participant Client
+    participant AuthorizationServer as Authorization Server
+    participant ResourceServer as Resource Server
+
+    Client->>AuthorizationServer: 1. Authorization Code Flow (completes)
+    AuthorizationServer-->>Client: 2. Access Token and Refresh Token
+    Client->>ResourceServer: 3. Resource Request with access token
+    ResourceServer-->>Client: 4. 200 OK
+    Client-->Client: Time has passed and access token has expired.
+    Client->>ResourceServer: 5. Resource Request with access token
+    ResourceServer-->>Client: 6. 401 Unauthorized
+    Client->>AuthorizationServer: 7. Call `/token` with grant_type=refresh_token and pass refresh token
+    AuthorizationServer-->>Client: 8. New Access Token and Refresh Token
+    Client->>ResourceServer: 9. Resource Request with new access token
+    ResourceServer-->>Client: 10. 200 OK
+</div>
+
+<p>However, allowing unlimited refresh would make the risk of a leaked Refresh Token permanent. In practice, limits are almost always applied:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Limitation Method</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Expiration</td>
+          <td>Refresh Token expires after a set period (e.g., 30 or 90 days); user must re-login</td>
+      </tr>
+      <tr>
+          <td>Refresh Token Rotation</td>
+          <td>Each use replaces the Refresh Token with a new one; old token is immediately revoked</td>
+      </tr>
+      <tr>
+          <td>Maximum Use Count</td>
+          <td>Refresh Token expires after a specified number of uses</td>
+      </tr>
+      <tr>
+          <td>Absolute Lifetime</td>
+          <td>Refresh Token expires a fixed time after initial issuance, regardless of renewal activity</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="refresh-token-rotation">Refresh Token Rotation<a hidden class="anchor" aria-hidden="true" href="#refresh-token-rotation">#</a></h3>
+<p>Refresh tokens can potentially be stolen as well. We need a mechanism to protect ourselves from refresh token theft. If an attacker steals a refresh token, he/she can request an access token using it and gain access.
+Implementing refresh token rotation can help us mitigate the damage of refresh token theft.</p>
+<p>Refresh tokens are single-use: If a refresh token is used, it immediately becomes invalid and a new one is returned. If an old refresh token is used (meaning second attempt, potential malicious user), then we invalidate all issued access tokens and refresh tokens and the resource owner needs to go through the authorization flow to get new valid ones.</p>
+<h2 id="refs">Refs<a hidden class="anchor" aria-hidden="true" href="#refs">#</a></h2>
+<ul>
+<li><a href="https://oauth.net/2/">https://oauth.net/2/</a></li>
+<li><a href="https://dev.to/kanywst/rfc-6749-deep-dive-understanding-oauth-20-design-decisions-from-the-specification-2amb">https://dev.to/kanywst/rfc-6749-deep-dive-understanding-oauth-20-design-decisions-from-the-specification-2amb</a></li>
+<li><a href="https://labs.detectify.com/writeups/account-hijacking-using-dirty-dancing-in-sign-in-oauth-flows/#explanation-of-different-oauth-dances">https://labs.detectify.com/writeups/account-hijacking-using-dirty-dancing-in-sign-in-oauth-flows/#explanation-of-different-oauth-dances</a></li>
+<li><a href="https://www.oauth.com/playground/authorization-code-with-pkce.html">https://www.oauth.com/playground/authorization-code-with-pkce.html</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://theddy.dev/tags/oauth/">Oauth</a></li>
+      <li><a href="https://theddy.dev/tags/oidc/">Oidc</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    function getTheme() {
+        const stored = localStorage.getItem("pref-theme");
+        if (stored) return stored;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    }
+
+    function renderMermaid() {
+        const isDark = getTheme() === "dark";
+
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: isDark ? "dark" : "default"
+        });
+
+        document.querySelectorAll(".mermaid").forEach(el => {
+            el.removeAttribute("data-processed");
+        });
+
+        mermaid.run({
+            querySelector: ".mermaid"
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", renderMermaid);
+
+    document.addEventListener("click", function (e) {
+        if (e.target.closest("#theme-toggle")) {
+            setTimeout(renderMermaid, 150);
+        }
+    });
+</script>
+
+</body>
+
+</html>

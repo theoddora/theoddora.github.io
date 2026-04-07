@@ -6,8 +6,17 @@
     <description>Recent content on Theddy Dev Space</description>
     <generator>Hugo -- 0.157.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2026 21:30:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2026 13:40:25 +0300</lastBuildDate>
     <atom:link href="https://theddy.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Framework Behind Modern Authorization - OAuth</title>
+      <link>https://theddy.dev/posts/oauth2/</link>
+      <pubDate>Tue, 07 Apr 2026 13:40:25 +0300</pubDate>
+      <guid>https://theddy.dev/posts/oauth2/</guid>
+      <description>&lt;h2 id=&#34;history&#34;&gt;History&lt;/h2&gt;
+&lt;p&gt;Before OAuth 2.0, giving access to third party applications to a requested resource, meant we needed to type our credentials - username and password, which are stored on the 3P side and used as an action which was performed on our behalf.&lt;/p&gt;
+&lt;p&gt;This is a problem, firstly, because they can be used to access all kinds of resources, not a limited scope of them, no revocation was possible, and secondly, third party software stored those in plaintext. If the third-party software was compromised, our data was also at risk.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The JWT Confusion: Why You Are Probably Talking About JWS</title>
       <link>https://theddy.dev/posts/jwt-jws/</link>

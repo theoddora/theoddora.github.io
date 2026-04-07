@@ -136,7 +136,7 @@ JWT and JWS are closely related. A JWT defines what is being transmitted - a set
 JWT (format) + JWS (signature) = signed JWT. 
 ```
 
-The term "JWT" is often used interchangeably with JWS in practice, and this is generally accepted. Most of the time, when people say "JWT", they are actually referring to a signed token (JWS). However, this is technically imprecise, since JWT is only the data format, while JWS defines how that data is signed  —understanding this distinction is important.
+The term "JWT" is often used interchangeably with JWS in practice, and this is generally accepted. Most of the time, when people say "JWT", they are actually referring to a signed token (JWS). However, this is technically imprecise, since JWT is only the data format, while JWS defines how that data is signed. That is why I want to emphasize that understanding this distinction is important.
 
 
 ## Refs
